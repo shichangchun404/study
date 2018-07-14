@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直水平居中--面试必问</title>
+    <style>
+    *{margin: 0px;padding: 0px}
+    html,body{height:100%} 
+    /*垂直居中方案1 display: flex;
+        align-items:center;*/
+    .box1{
+        width: 100%;
+        height: 100%;
+        border: aqua 2px solid;
+        box-sizing: border-box;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+    }
+    .box11{
+        width: 100px;
+        height: 100px;
+        background: cornflowerblue;
+    }
+
+    /**  不定宽高时
+    方法2  父级元素给position: relative;让子元素绝对定位以他为参考
+            子元素通过 position: absolute;margin: auto auto;以及
+            left:0px;
+            top:0px;
+            right:0px;
+            bottom:0px;
+    */
+    .box2{
+        width: 100%;
+        height: 100%;
+        border: aqua 2px solid;
+        box-sizing: border-box;
+        position: relative;
+
+    }
+    .box22{
+        width: 100px;
+        height:100px;
+        background: bisque;
+        position: absolute;
+        margin: auto auto;/*l t r b 要设置为0 从而撑开页面居中*/
+        left:0px;
+        top:0px;
+        right:0px;
+        bottom:0px;
+    }
+
+    /** 不定宽高时 居中方案
+        方案3 父级元素给 position: relative;
+             子元素给position: absolute; 
+             top: 50%; 此处50%位父级元素宽度的50%
+             left: 50%;
+             transform: translateX(-50%) translateY(-50%);此处的50%位自己宽度的50%
+             当宽高不定时，不能用margin-left偏移居中，因为他须知道自己元素固定宽高，他的50%也是父级元素
+
+    */
+    .box3{
+        width: 100%;
+        height: 100%;
+        border: aqua 2px solid;
+        box-sizing: border-box;
+        position: relative;
+
+    }
+    .box33{
+        width: 100px;
+        height: 100px;
+        background: aqua;
+        word-break: break-all;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        /*transform: translateX(-50%) translateY(-50%);*/
+        transform: translate(-50%,-50%) 
+       
+    }
+    .box4{
+        width: 200px;
+        height: 200px;
+        background: red;
+        margin: 0px auto;
+    }
+    .box5{
+        position: absolute;
+        display:inline-block;
+        width: 200px;
+        height: 200px;
+        left: 0px;
+        right: 0px;
+        background:beige;
+        margin: 0px auto;
+    }
+    .box55{
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <!-- 
+        <div class="box1"><div class="box11">111</div></div>
+        <div class="box2"><div class="box22">222</div></div>
+        
+        <div class="box3"><div class="box33">333333333333333</div></div>
+    -->
+
+    <div class="box4">44444</div>
+    <p class="box55"><span class="box5">555</span></p>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素</title>
+    <style>
+    *{
+        border: 0px;
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        font-family: "microsoft yahei","Droid Sans","Droid Sans Fallback","Lucida Grande","Hiragino Sans GB","Hiragino Sans GB W3";
+    }
+    body{
+        background: #f2f6f9;
+    }
+    .top{
+        height: 44px;
+        background: #d23c3e;
+        display: flex;
+    }
+    .left,.right{
+        width: 64px;
+    }
+    .left img,.right img{
+        width: 44px;
+        height: 44px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    .left img{
+        margin-left:20px;
+        border-radius:22px;
+    }
+    .right img{
+        margin-right:20px;
+        padding: 8px;
+    }
+    .center{
+        flex:1;
+        position: relative;
+    }
+    .center span{
+        display: inline-block;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: url(../img/sc.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+        left:15%;
+        top:7px;
+        z-index: 99;
+        padding: 4px;
+        box-sizing: border-box;
+    }
+    .center input{
+        position:relative;
+        width: 80%;
+        height: 30px;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        border-radius:8px;
+        text-indent: 50px;
+
+    }
+    .header{
+        display: flex;
+        height: 44px;
+        background:#ffffff;
+        text-align: center;
+        border-bottom: #ececec 1px solid
+    }
+    .header li{
+        flex: 1;
+        color:#1c1c1c ;
+        line-height: 44px;
+    }
+    .header li:hover{
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top">
+            <div class="left"><img src="../img/scc.jpg"></div>
+            <div class="center"><span></span><input type="text" placeholder="搜索"></div>
+            <div class="right"><img src="../img/c.jpg"></div>
+        </div>
+        <ul class="header">
+           <li>关注</li>
+           <li>推荐</li>
+           <li>安庆</li>
+           <li>关注</li>
+           <li>视屏</li>
+           <li>热点</li>
+           <li>图片</li>
+           <li>头条</li>
+        </ul>
+    </header>
+</body>
+</html>

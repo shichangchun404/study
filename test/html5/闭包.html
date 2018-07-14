@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+    <style>
+    li{
+        list-style: none;
+        height:30px;
+    }
+    li:nth-of-type(2n){
+        background:plum;
+    }
+    li:nth-of-type(2n+1){
+        background:powderblue;
+    }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+        <li>44</li>
+    </ul>
+</body>
+<script>
+    /*用原生方法 给每个li标签添加点击事件 输出他们的下标*/
+    var lis = document.getElementsByTagName("li");
+
+    /*方式1 通过call方法*/
+    Array.prototype.forEach.call(lis,(el,i)=>{
+        el.onclick = function(){
+            console.log(i)
+        }
+    })
+
+    /*方式2 与1一样*/
+    // Array.prototype.forEach.call(lis,function(el,i){
+    //     el.onclick = function(){
+    //         console.log(i)
+    //     }
+    // })
+
+
+    /*以下方法不行 形成闭包 输出全是4*/
+    // for(var i=0;i<lis.length;i++){
+    //     lis[i].onclick = function(){
+    //         console.log(i);
+    //     }
+    // }
+
+    /*对上方法改良 通过立即执行函数解决（函数遇到表达式就会立即执行）
+    图片懒加载处用到
+    */
+     for(var i=0;i<lis.length;i++){
+         (function(j){
+            lis[j].onclick = function(){
+                console.log(j)
+            }
+         }(i))
+     }
+
+
+    // lis.forEach(el=>{  报错 lis是类数组 其原型上没有forEach方法，故需要Array.prototype.forEach.call()的形式调用
+    //     console.log(el);
+    // })
+</script>
+</html>

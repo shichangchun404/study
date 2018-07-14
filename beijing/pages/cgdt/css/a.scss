@@ -1,0 +1,10 @@
+@function px2rem($px){
+    $rem: 37.5px;
+    @return ($px / $rem) + rem;
+}
+.a{
+    width:px2rem(20px);
+    .b{
+        width:px2rem(30px);  
+        }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件单向数据流</title>
+</head>
+<body>
+    <div id="app">
+        <h1>父子组件单向数据流</h1>
+        <h1>父组件msg={{msg}}</h1>
+        <input type="text" v-model="msg">
+        <hr>
+        <child :fathermsg="msg"></child>
+        <hr>
+        <h2>双向绑定</h2>
+        <input type="text" v-model="msg2.name">
+        <h2>父元素双向绑定数据name={{msg2.name}}</h2>
+        <child2 :fathermsg2="msg2"></child2>
+
+    </div>
+
+    <template id="child">
+        <div>
+            <h3>我是子组件</h3>
+            <h3>父组件传递信息={{fathermsg}}</h3>
+            <h3>我将父组件信息变成了={{mymsg}}</h3>
+        </div>
+    </template>
+
+    <template id="child2">
+            <div>
+                <h3>我是双向绑定子组件</h3>
+                <h3>父组件传递信息={{fathermsg2}}</h3>
+                <h3>我将父组件信息变成了={{mymsg2}}</h3>
+            </div>
+        </template>
+</body>
+<script src="../js/vue.min.js"></script>
+<script>
+    
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"i am father",
+            msg2:{
+                name:"hello"
+            }
+        },
+        components:{
+            "child":{
+                template:"#child",
+                props:["fathermsg"],
+                computed:{
+                    mymsg(){
+                        return this.fathermsg.split(' ').reverse().join(' ');
+                    }
+                }
+            },
+            "child2":{
+                template:"#child2",
+                props:["fathermsg2"],
+                computed:{
+                    mymsg2(){
+                        return this.fathermsg2.name=this.fathermsg2.name+"shicc";
+                    }
+                }
+            }
+
+        }
+        
+    })
+    /*
+    Prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是反过来不会。
+    这是为了防止子组件无意间修改了父组件的状态，来避免应用的数据流变得难以理解。
+    另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你不应该
+    在子组件内部改变 prop。如果你这么做了，Vue 会在控制台给出警告。
+    在两种情况下，我们很容易忍不住想去修改 prop 中数据：
+    Prop 作为初始值传入后，子组件想把它当作局部数据来用；
+    Prop 作为原始数据传入，由子组件处理成其它数据输出。
+    对这两种情况，正确的应对方式是：
+    1 定义一个局部变量，并用 prop 的值初始化它：
+    20定义一个计算属性，处理 prop 的值并返回：
+
+    如果想通过子组件改变父组件的值，可将prop以对象的形式传给子组件
+    */
+</script>
+</html>

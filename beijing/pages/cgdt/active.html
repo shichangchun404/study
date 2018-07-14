@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />  
+    <title>活动页面</title>
+    <link rel="stylesheet" href="./css/comm.css">
+    <link rel="stylesheet" href="./css/active.css">
+</head>
+<body>
+    <header>
+        <div class="act-head-img">
+            <div class="head-msg">
+                <span class="head-title">安徽移动手机营业厅</span>
+                <span class="head-load">下载</span>
+            </div>
+            <div class="timer">
+                倒计时：<span>60</span>
+            </div>
+        </div>
+    </header>
+    <div class="question-body">
+        <ul>
+            <li>
+                <p class="question">1、【单选】合肥常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="radio"></b>50万</span>
+                    <span class="ans-input"><b class="radio"></b>500万</span>
+                </p>
+            </li>
+            <li>
+                <p class="question">2、【单选】北京常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="radio"></b>50万</span>
+                    <span class="ans-input"><b class="radio"></b>500万</span>
+                </p>
+            </li>
+            <li>
+                <p class="question">3、【单选】安庆常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="radio"></b>50万</span>
+                    <span class="ans-input"><b class="radio"></b>500万</span>
+                </p>
+            </li>
+            <li>
+                <p class="question">4、【多选】池州常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="cheakbox"></b>50万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>500万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>600万</span>
+                </p>
+            </li>
+            <li>
+                <p class="question">5、【多选】河南常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="cheakbox"></b>50万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>500万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>600万</span>
+                </p>
+            </li>
+            <li>
+                <p class="question">6、【多选】天津常驻人口有多少？</p>
+                <p class="answers">
+                    <span class="ans-input"><b class="cheakbox"></b>50万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>500万</span>
+                    <span class="ans-input"><b class="cheakbox"></b>600万</span>
+                </p>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="commit-box">
+        <div class="commit-btn"></div>
+    </div>
+    <!-- 答题结束 查看答案-->
+    <div class="mask hide"></div>
+    <div class="ans-over hide">
+        <div class="ans-over-title"></div> 
+        <div class="iscoll" id="info_scroll">
+            <ul>
+                <li>
+                    <p class="ans-over-que">1、【单选】合肥常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio-suc"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">2、【单选】北京常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio-err"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">3、【单选】合肥常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio-suc"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">4、【单选】北京常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio-err"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">5、【单选】合肥常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio-suc"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">6、【单选】北京常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio-err"></b>500万</span>
+                    </p>
+                </li>
+                <li>
+                    <p class="ans-over-que">7、【单选】北京常驻人口有多少？</p>
+                    <p class="ans-over-ans">
+                        <span class="ans-over-input"><b class="radio"></b>50万</span>
+                        <span class="ans-over-input"><b class="radio-err"></b>500万</span>
+                    </p>
+                </li>
+            </ul>  
+        </div>
+        <div class="again-btn getSucc"></div>
+    </div>
+    <!-- 答题结果展示-->
+    <div class="mask-all hide"></div>
+    <!-- 成功-->
+
+    <div class="result-succ hide">
+        <div class="succ-conent">
+            <p class="p1">答对<span class="org-color">5</span>题</p>
+            <p class="p1">你太棒了</p>
+            <p class="p2">恭喜获得<span class="org-color">500M</span>流量</p>
+        </div>
+        <div class="succ-btn">
+            <span class="get-btn">领取</span>
+            <span class="share-btn">炫耀一下</span>
+        </div>
+        <p class="p3"><span class="org-color">>></span>在安徽移动手机营业厅<span class="org-color">领奖中心</span>领取哦！</p>
+    </div>
+    <!-- 失败-->
+    <div class="result-err hide">
+        <div class="err-conent">
+                <p class="p1">再接再厉!</p>
+                <p class="p1">为荣誉再战一次</p>
+            </div>
+        <div class="err-btn">
+            <span class="again-btn close">再来一次</span>
+            <span class="where-btn">我错在哪</span>
+        </div>        
+    </div>
+</body>
+<script src="./js/zepto.min.js"></script>
+<script src="./js/iscroll.js"></script>
+<script src="./js/setview.js"></script>
+<script>
+    $(function(){
+        timer(60);
+        /*文字滑动*/
+        var info_scroll = new iScroll("info_scroll", {
+            hScroll: false,
+            vScroll: true,
+            vScrollbar: false,
+            handleClick: false,
+            onBeforeScrollStart: function() {
+            }
+        });
+        /*单选切换*/
+        $(".radio,.radio-sel").click(function(){
+            console.log(this);
+            $(this).addClass("radio-sel");
+            $(this).parent().siblings().children().removeClass("radio-sel");
+        });
+        /*多选切换*/
+        $(".cheakbox ,.cheakbox-sel").click(function(){
+            if($(this).hasClass("cheakbox-sel")){
+                $(this).removeClass("cheakbox-sel");
+            }else{
+                $(this).addClass("cheakbox-sel");
+            }
+        });
+        /*点击提交*/
+        $(".commit-btn").click(function(){
+            result.showErr();
+        });
+        /*点击我错在哪*/
+        $(".where-btn").click(function(){
+            result.closeErr();
+            result.showAns();
+        });
+        /*再来一次*/
+        $(".close").click(function(){
+            result.closeErr();
+        });
+        /*展示成功 getSucc*/
+        $(".getSucc").click(function(){
+            result.closeAns();
+            result.showSucc();
+        });
+        /*点击领取*/
+        $(".get-btn").click(function(){
+            result.closeSucc();
+        });
+        /*分享*/
+         $(".share-btn").click(function(){
+             window.location.href="./share.html"
+         })
+    });
+    const ans = $(".ans-over")
+    const succ = $(".result-succ");
+    const err = $(".result-err");
+    const mask = $(".mask");
+    const maskAll = $(".mask-all");
+    const result = {
+        showErr:()=>{
+            maskAll.removeClass("hide");
+            err.removeClass("hide");
+        },
+        showSucc:()=>{
+            maskAll.removeClass("hide");
+            succ.removeClass("hide");
+        },
+        closeErr:()=>{
+            maskAll.addClass("hide");
+            err.addClass("hide");
+        },
+        closeSucc:()=>{
+            maskAll.addClass("hide");
+            succ.addClass("hide");
+        },
+        showAns:()=>{
+            mask.removeClass("hide");
+            ans.removeClass("hide");
+        },
+        closeAns:()=>{
+            mask.addClass("hide");
+            ans.addClass("hide");
+        }
+    }
+    /*倒计时*/
+    function timer(t){
+        let timer1 = setInterval(function(){
+            if(t>-1){
+                return $(".timer span").text(t--)
+            }else{
+                alert("时间到，答题结束。。。");
+                clearInterval(timer1);
+                return $(".timer span").text(0);
+            }
+        },1000)
+    }
+</script>
+</html>

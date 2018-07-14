@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5新特性 拖拽</title>
+</head>
+<style>
+    .box1{
+        width: 200px;
+        height: 200px;
+        background:lightgreen;
+    }
+    img{
+        width: 100px;
+        height: 100px;
+    }
+    .box2{
+        width: 300px;
+        height: 300px;
+        border:lightgoldenrodyellow 2px solid;
+    }
+</style>
+<body>
+    <div class="box1"><img id="img" src="./img/cc.jpg" draggable="true" ondragstart="drag(event)">hello word</div>
+    <div id="box2" class="box2" ondragover="dragover(event)" ondrop="drop(event)"></div>
+</body>
+<script>
+    function drag(e){
+        e.dataTransfer.setData("id",e.target.id)
+    }
+    function dragover(e){
+        e.preventDefault();
+    }
+    function drop(e){
+        e.preventDefault();
+        var id = e.dataTransfer.getData("id");
+        e.target.appendChild(document.getElementById(id));
+    }
+</script>
+</html>

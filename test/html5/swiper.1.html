@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>swiper测试</title>
+    <link rel="stylesheet" href="../css/swiper.css">
+    <style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
+    .swiper-slide{
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-size: 50px;
+    }
+    .slide1{
+        background: aqua;
+    }
+    .slide2{
+        background: orange
+    }
+    .slide3{
+        background: red;
+    }
+    </style>
+</head>
+<body>
+    <div class="swiper-container1">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide slide1" > Slide1</div>
+            <div class="swiper-slide slide2" > Slide2</div>
+            <div class="swiper-slide slide3" > Slide3</div>
+        </div>
+    </div>
+</body>
+<script src="../js/swiper.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+      var mySwiper = new Swiper('.swiper-container1',{
+        autoplay : 2000,//可选选项，自动滑动
+        loop : true,//可选选项，开启循环
+        //speed:10,//速度默认300ms
+        //eventTarget : 'container',//默认wrapper
+        //mode:"vertical",//滑动方向，默认水平(horizontal) 垂直(vertical)。
+      });  
+    }
+    //setInterval("mySwiper.swipePrev()", 2000);
+</script>
+</html>

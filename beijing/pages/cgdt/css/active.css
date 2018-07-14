@@ -1,0 +1,295 @@
+@charset "UTF-8";
+body {
+  background: #bbed6c; }
+
+.act-head-img {
+  width: 100%;
+  height: 3.46667rem;
+  background: url(../img/ansque-main-title.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative; }
+  .act-head-img .head-msg {
+    position: absolute;
+    width: 100%;
+    height: 0.8rem;
+    margin-top: 1.06667rem; }
+    .act-head-img .head-msg .head-title {
+      display: inline-block;
+      width: 80%;
+      height: 0.8rem;
+      line-height: 0.8rem;
+      text-align: right;
+      color: black;
+      font-size: 0.48rem; }
+    .act-head-img .head-msg .head-load {
+      display: inline-block;
+      height: 0.8rem;
+      width: 1.6rem;
+      line-height: 0.8rem;
+      margin-left: 0.13333rem;
+      border-radius: 0.4rem;
+      background: #52a8e1;
+      color: #fff;
+      font-size: 0.48rem;
+      text-align: center; }
+  .act-head-img .timer {
+    position: absolute;
+    width: 3.14667rem;
+    height: 1.06667rem;
+    line-height: 1.06667rem;
+    margin-top: 2.4rem;
+    background: #000;
+    opacity: 0.8;
+    border-radius: 0.10667rem;
+    color: #fff;
+    font-size: 0.48rem;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%); }
+
+.question-body {
+  padding: 0.26667rem 0.53333rem; }
+  .question-body ul li {
+    position: relative;
+    margin-top: 0.26667rem;
+    font-size: 0.48rem;
+    color: #333; }
+    .question-body ul li .question {
+      height: 0.53333rem;
+      line-height: 0.53333rem; }
+    .question-body ul li .answers {
+      margin: 0.13333rem 0.53333rem; }
+      .question-body ul li .answers .ans-input {
+        margin-right: 0.53333rem; }
+        .question-body ul li .answers .ans-input .radio {
+          display: inline-block;
+          width: 0.53333rem;
+          height: 0.53333rem;
+          background: url(../img/icon-radio-01.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin-right: 0.10667rem; }
+        .question-body ul li .answers .ans-input .radio-sel {
+          display: inline-block;
+          width: 0.53333rem;
+          height: 0.53333rem;
+          background: url(../img/icon-radio-02.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin-right: 0.10667rem; }
+        .question-body ul li .answers .ans-input .cheakbox {
+          display: inline-block;
+          width: 0.53333rem;
+          height: 0.53333rem;
+          background: url(../img/icon-radio-03.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin-right: 0.10667rem; }
+        .question-body ul li .answers .ans-input .cheakbox-sel {
+          display: inline-block;
+          width: 0.53333rem;
+          height: 0.53333rem;
+          background: url(../img/icon-radio-04.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          margin-right: 0.10667rem; }
+
+.commit-box {
+  position: relative;
+  height: 2.13333rem; }
+  .commit-box .commit-btn {
+    position: absolute;
+    width: 3.73333rem;
+    height: 1.33333rem;
+    background: url(../img/ansque-btn-commit.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto auto; }
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 3.73333rem;
+  background: #000;
+  opacity: 0.7; }
+
+.ans-over {
+  position: absolute;
+  width: 80%;
+  height: 11.2rem;
+  border: aqua 2px solid;
+  left: 50%;
+  top: 4.8rem;
+  transform: translateX(-50%);
+  background: #ffffff; }
+  .ans-over .ans-over-title {
+    position: absolute;
+    width: 4rem;
+    height: 1.2rem;
+    background: url(../img/ansque-over-title.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+    transform: translateY(-50%); }
+  .ans-over .iscoll {
+    width: 100%;
+    height: 8rem;
+    margin-top: 0.66667rem;
+    overflow: hidden; }
+    .ans-over .iscoll ul {
+      position: relative !important;
+      /*解决文字滚动溢出问题*/
+      padding: 0.13333rem 0.26667rem;
+      font-size: 0.42667rem;
+      color: #333; }
+      .ans-over .iscoll ul li .ans-over-ans {
+        margin: 0.26667rem 0.85333rem; }
+        .ans-over .iscoll ul li .ans-over-ans .ans-over-input {
+          margin-right: 0.53333rem; }
+          .ans-over .iscoll ul li .ans-over-ans .ans-over-input .radio {
+            width: 0.42667rem;
+            height: 0.42667rem;
+            display: inline-block;
+            background: url(../img/icon-radio-01.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-right: 0.10667rem; }
+          .ans-over .iscoll ul li .ans-over-ans .ans-over-input .radio-suc {
+            width: 0.42667rem;
+            height: 0.42667rem;
+            display: inline-block;
+            background: url(../img/icon-radio-02.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-right: 0.10667rem; }
+          .ans-over .iscoll ul li .ans-over-ans .ans-over-input .radio-err {
+            width: 0.42667rem;
+            height: 0.42667rem;
+            display: inline-block;
+            background: url(../img/icon-choose.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-right: 0.10667rem; }
+  .ans-over .again-btn {
+    position: absolute;
+    width: 3.46667rem;
+    height: 1.33333rem;
+    background: url(../img/ansque-then.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 0.53333rem;
+    left: 50%;
+    transform: translateX(-50%); }
+
+.mask-all {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  background: #000;
+  opacity: .7; }
+
+.result-succ {
+  width: 9.73333rem;
+  height: 11.33333rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url(../img/dia-sucbg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+  .result-succ .succ-conent {
+    position: relative;
+    width: 8rem;
+    margin-left: 1.86667rem;
+    margin-top: 3.73333rem; }
+    .result-succ .succ-conent .p1 {
+      height: 0.96rem;
+      line-height: 0.96rem;
+      font-size: 0.8rem;
+      font-weight: 200;
+      padding: 0.53333rem 0px; }
+    .result-succ .succ-conent .p2 {
+      height: 0.96rem;
+      line-height: 0.96rem;
+      font-size: 0.64rem;
+      font-weight: 200;
+      padding: 0.53333rem 0px; }
+  .result-succ .succ-btn {
+    position: relative;
+    width: 6.93333rem;
+    height: 1.33333rem;
+    margin-top: 0.53333rem;
+    left: 50%;
+    transform: translateX(-50%); }
+    .result-succ .succ-btn span {
+      display: inline-block;
+      width: 3.2rem;
+      height: 1.06667rem;
+      border-radius: 0.13333rem;
+      font-size: 0.64rem;
+      line-height: 1.06667rem;
+      text-align: center;
+      color: #fff; }
+    .result-succ .succ-btn .get-btn {
+      background: #8ac41a;
+      margin-right: 0.26667rem; }
+    .result-succ .succ-btn .share-btn {
+      background: #f49832; }
+  .result-succ .p3 {
+    height: 0.53333rem;
+    line-height: 0.53333rem;
+    font-size: 0.37333rem;
+    text-align: center; }
+
+.result-err {
+  width: 9.73333rem;
+  height: 11.33333rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url(../img/dia-failbg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+  .result-err .err-conent {
+    position: relative;
+    width: 8rem;
+    margin-left: 1.6rem;
+    margin-top: 4.26667rem; }
+    .result-err .err-conent .p1 {
+      height: 0.96rem;
+      line-height: 0.96rem;
+      font-size: 0.8rem;
+      font-weight: 200;
+      margin-top: 0.8rem; }
+  .result-err .err-btn {
+    position: relative;
+    width: 6.93333rem;
+    height: 1.33333rem;
+    margin-top: 1.06667rem;
+    left: 50%;
+    transform: translateX(-50%); }
+    .result-err .err-btn span {
+      display: inline-block;
+      width: 3.2rem;
+      height: 1.06667rem;
+      border-radius: 0.13333rem;
+      font-size: 0.64rem;
+      line-height: 1.06667rem;
+      text-align: center;
+      color: #fff; }
+    .result-err .err-btn .again-btn {
+      background: #8ac41a;
+      margin-right: 0.26667rem; }
+    .result-err .err-btn .where-btn {
+      background: #f49832; }

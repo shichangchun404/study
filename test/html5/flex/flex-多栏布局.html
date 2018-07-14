@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性布局-多栏布局</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        .parent{
+           height:60px;
+           width: 100%;
+           text-align: center;
+           line-height:60px;
+           border: khaki 5px solid;
+           box-sizing: border-box;
+
+           position: absolute;/*必须先设置position: absolute后 bottom top left right才会有效*/
+           bottom:0px;
+
+           display:flex;/*父级元素加完flex属性 子元素相当于浮动到一行了*/
+        }
+        .child{
+           flex:1;
+           background:aqua;
+           border: aliceblue 2px solid;/*加完弹性布局后 子元素加border盒子不变大 不需要设置box-sizing: border-box;*/
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">111</div>
+        <div class="child">222</div>
+        <div class="child">333</div>
+        <div class="child">444</div>
+        <div class="child">555</div>
+        <div class="child">666</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解析xml</title>
+</head>
+<body>
+    <img src="http://ah.10086.cn/m/u/cms/m/201803/021501433yfi.png" alt="">
+</body>
+<script type="text/javascript">
+    function readd(res){
+        console.log("response ...");
+        console.log(res);
+    }
+</script>
+<script type="text/javascript">
+    /* 
+         var xmlhttp;  
+        if(window.XMLHttpRequest){  
+            xmlhttp = new XMLHttpRequest();     //IE7，FireFox,Chrome,OPera,Safari  
+        }else{  
+            xmlhttp = new ActiveXobject('Microsoft.xmlHTTP');  // IE6，IE5  
+        }     
+    */
+
+    /*本地直接通过ajax访问由于跨域问题无法获取*/
+   /* var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('GET','./json/name.json','true');
+    //xmlhttp.open('GET','https://api.douban.com/v2/book/search?q=javascript&count=1','true');
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function(){
+        if(xmlhttp.status===200){
+            console.log(xmlhttp.response);
+        }else{
+            console.log("强求失败")
+        }
+    }*/
+
+    /*解决方法1 动态穿件script*/
+    window.onload = function() {
+        var script = document.createElement("script");
+        script.async = true;
+        //script.src = "./json/name.json?cb=read";
+        script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=%E6%97%85%E6%B8%B8&cb=readd";
+        document.body.appendChild(script);
+
+    function isArray(obj){  
+        if(Array.isArray){  
+            return Array.isArray(obj);  
+        }else{  
+            return Object.prototype.toString.call(obj)==="[object Array]";  
+        }  
+    }  
+    var a=[]
+    isArray(a)
+
+    }
+
+</script>
+</html>

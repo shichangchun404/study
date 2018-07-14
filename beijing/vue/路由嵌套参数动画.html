@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由的嵌套参数及动画</title>
+    <link rel="stylesheet" href="../css/animate.css">
+    <style>
+    .active{
+        font-size: 20px;
+        color: red;
+    }
+    li{
+        height: 30px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/home">首页</router-link>
+        <router-link to="/user">用户</router-link>
+        <button @click="gotoLoad">去下载页面</button>
+        <button @click="gotoIndex">切换首页</button>
+        <hr>
+        <transition enter-active-class="animated bounceInLeft"
+                    leave-active-class="animated bounceOutRight">
+                    <router-view></router-view>
+        </transition>
+       
+    </div>
+    <template id="home">
+        <div>
+            <h2>i am home page</h2>
+        </div>
+    </template>
+    <template id="user">
+        <div>
+            <p>i am user page</p>
+            <ul>
+                <router-link to="/user/login?u=shicc&pwd=0216"  tag="li">user login</router-link>
+                <router-link to="/user/regist/bm/1212" tag="li">user regist</router-link>
+                <p>route.query={{$route.query}}</p>
+                <p>$route.params={{$route.params}}</p>
+            </ul>
+            <transition enter-active-class="animated bounceInDown" 
+                   leave-active-class="animated bounceOutDown">
+                <router-view></router-view>
+            </transition>
+        </div>
+    </template>
+    <template id="login">
+        <div>
+            <ul>
+                <li>用户名<input type="text" placeholder="请输入用户名"></li>
+                <li>密码<input type="text" placeholder="请输入密码"></li>
+                <li><button>登陆</button></li>
+            </ul>
+        </div>
+    </template>
+    <template id="regist">
+        <div>
+            <ul>
+                <li>注册用户名<input type="text" placeholder="请输入用户名"></li>
+                <li>填写密码<input type="text" placeholder="请输入密码"></li>
+                <li>确认密码<input type="text" placeholder="请输入密码"></li>
+                <li><button>注册</button></li>
+            </ul>
+        </div>
+    </template>
+</body>
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.min.js"></script>
+<script>
+    const Home = {
+        template:"#home"
+    }
+    const User = {
+        template:"#user"
+    }
+    const Login = {
+        template:"#login"
+    }
+    const Regist = {
+        template:"#regist"
+    }
+    const Load = { 
+        template:"<h2>我是下载页面</h2>"
+    }
+    /*配置路由*/
+    const routes = [
+        {
+            path:"/home",
+            component:Home
+        },
+        {
+            path:"/load",
+            component:Load
+        },
+        {
+            path:"/user",
+            component:User,
+            children:[
+                {
+                    path:"login",
+                    component:Login
+                },
+                {
+                    path:"regist/:user/:password",//rest风格URL地址传参形式
+                    component:Regist
+                }
+            ]
+        },
+        {
+            path:"*",
+            redirect:"/home"
+        }
+    ]
+    /* 注册路由 创建路由实例*/
+    const router = new VueRouter({
+        routes,
+        mode:"history",
+        linkActiveClass:"active"
+    })
+    /* 注入路由*/
+    var vm = new Vue({
+        el:"#app",
+        router,
+        methods:{
+            gotoLoad(){
+                router.push({path:"/load"})
+            },
+            gotoIndex(){
+                router.replace({path:"/home"})//不会有历史记录
+            }
+        }
+    })
+</script>
+</html>

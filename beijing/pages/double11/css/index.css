@@ -1,0 +1,39 @@
+* {
+  border: 0px;
+  margin: 0px;
+  padding: 0px; }
+
+body {
+  font-size: 0.32rem; }
+
+.f1 {
+  height: 6rem;
+  background: url("../img/double-eleven_01.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat; }
+
+.f2 {
+  position: relative;
+  height: 8.24rem;
+  background: url("../img/double-eleven_02.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat; }
+  .f2 span {
+    position: absolute;
+    width: 3.6rem;
+    height: 1.36rem;
+    background: #ccc;
+    left: 0px;
+    right: 0px;
+    margin: 0px auto;
+    top: 6.6rem; }
+  .f2 .btn-1 {
+    background: url("../img/switch-grab.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat; }
+
+.f3 {
+  height: 11.44rem;
+  background: url("../img/double-eleven_03.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat; }

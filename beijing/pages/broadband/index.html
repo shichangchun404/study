@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宽带专区</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <header class="header">
+        <div class="ksxd">快速下单区</div>
+    </header>
+    <div class="middle">
+        <ul class="table">
+            <li class="li1">
+                <input type="text" class="city" placeholder="合肥市蜀山区">
+                <input type="text" class="addr" placeholder="保利香槟国际">
+            </li>
+            <li class="li2">
+                <input type="text" class="detailAddr" placeholder="输入详细地址">
+                <button class="selectAddr-btn">手动选址</button>
+    
+            </li>
+            <li class="li3">
+                <span class="logo"></span>
+                <input type="text" class="name" placeholder="请输入姓名">
+                <span class="star">*</span>
+            </li>
+            <li class="li4">
+                <span class="logo"></span>
+                <input type="text" class="name" placeholder="请输入联系电话">
+                <span class="star">*</span>
+            </li>
+            <li class="li5">
+                <span class="logo"></span>
+                <input type="text" class="name" placeholder="备注">
+            </li>
+        </ul>    
+    </div>
+    <div class="commbox">
+        <div class="phonebox">
+            <div><span class="onsel"></span><p>我有移动号</p></div>
+            <div><span class="sel"></span><p>我没有移动号</p></div>
+        </div>
+        <button class="commit-btn">提交订单</button>
+    </div>
+    <div class="wxts-box">
+        <div class="wxts">
+            <p class="title">温馨提示</p>
+            <div class="wxts-cont">
+                <p>1. 请确保您的地址格式无误，便于您订单受理流程的顺畅进行。</p>
+                <p>2. 请正确填写您的手机号码，作为工作人员与您联系的唯一方式。</p>
+                <p>3. 我们会在您下单次日与您电话联系确认，为您制定专属优惠资费。</p>
+                <p>1. 请确保您的地址格式无误，便于您订单受理流程的顺畅进行。</p>
+                <p>2. 请正确填写您的手机号码，作为工作人员与您联系的唯一方式。</p>
+                <p>3. 我们会在您下单次日与您电话联系确认，为您制定专属优惠资费。</p>
+            </div>
+        </div>
+    </div>
+    <div class="kdzf-box">
+        <div class="kdzf">
+            <p class="title">宽带资费</p>
+            <div class="kdzf-cont">
+                <p>1. 请确保您的地址格式无误，便于您订单受理流程的顺畅进行。</p>
+                <p>2. 请正确填写您的手机号码，作为工作人员与您联系的唯一方式。</p>
+                <p>3. 我们会在您下单次日与您电话联系确认，为您制定专属优惠资费。</p>
+            </div>
+        </div>
+    </div>
+    <div class="dailog">
+        <div class="gray"></div>
+        <div class="citybox">
+            <div class="top"><p>请选择</p><span class="close"></span></div>
+            <div class="city-nav">
+                <div class="ciyt-name">合肥市</div>
+                <div class="ciyt-name onsel">蜀山区</div>
+                <ul class="city-list">
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                    <li>蜀山区</li>
+                </ul>
+                <div class="sure">确定</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../js/initRem.js"></script>
+<script src="../../js/jquery-2.1.4.min.js"></script>
+<script>
+    $(function(){
+        $(".gray").tap(function(event){
+            event.stopPropragation();
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>欢欢</title>
+    <style>
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        .body{
+            background-color: #333;
+            
+        }
+        img{
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius:100px;
+            margin: 40px auto;
+        }
+        .player{
+            animation: musicplayer 8s linear 0.5s infinite normal;
+        }
+        @keyframes musicplayer {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        .music-msg{
+            position: relative;
+            height: 300px;
+            width: 300px;
+            margin: 0px auto;
+            overflow-y: auto;
+            background: url('./img/qhh.jpg') no-repeat;
+            background-size: 100% 100%;
+        }
+        .music-msg p{
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+            color:#fff;
+            text-align: center;
+            position: relative;
+            
+        }
+        .pbox{
+            position: relative;
+            background:rgba(51,51,51,0.5);
+            padding:100px 0px;
+            box-sizing: content-box;
+        }
+        .active-p{
+            color: yellow;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body class="body">
+    <img class="player" src="./img/qq.png" alt="">
+    <div class="music-msg">
+        <div class="pbox">
+            <p>我们好像在哪儿见过你记得吗</p>
+            <p>好像那是一个春天我刚发芽</p>
+            <p>我走过</p>
+            <p>没有回头</p>
+            <p>我记得</p>
+            <p>我快忘了</p>
+            <p>我们好像在哪儿见过你记得吗</p>
+            <p>记得那是一个夏天盛开如花</p>
+            <p>我唱歌</p>
+            <p>没有对我</p>
+            <p>但我记得</p>
+            <p>可我快忘了</p>
+            <p>我们好像在哪见过你记得吗</p>
+            <p>好像那是一个秋天夕阳西下</p>
+            <p>你美得让我不敢和你说话</p>
+            <p>你经过我时风起浮动我的发</p>
+            <p>我们好像在哪见过你记得吗</p>
+            <p>记得那是一个冬天漫天雪花</p>
+            <p>我走过</p>
+            <p>没有回头</p>
+            <p>我记得</p>
+            <p>我快忘了</p>
+            <p>我们好像在哪见过你记得吗</p>
+            <p>那时你还是个孩子我在窗棂下</p>
+            <p>我猜着你的名字刻在了墙上</p>
+            <p>我画了你的摸样对着弯月亮</p>
+            <p>我们好像在哪见过你记得吗</p>
+            <p>当我们来到今生各自天涯</p>
+            <p>天涯相望今生面对谁曾想</p>
+            <p>还能相遇一切就像梦一样</p>
+            <p>我们好像在哪见过</p>
+        </div>
+    </div>
+    <div style="display:none">
+        <audio controls loop class="middle" ref="audio">
+            <source src="./music/seeyouwhere.mp3" type="audio/mpeg">
+            您的浏览器不支持 audio 元素。
+        </audio>
+    </div>
+</body>
+<script>
+    //http://120.209.204.205:59000/m/1111/forlove/sccqhh/demo/qhh/index.html
+    window.onload = function(){
+        const img = document.querySelector('img');
+        const audio = document.querySelector('audio');
+        const pbox = document.querySelector('.pbox');
+        var pArray = document.querySelectorAll('.pbox p');
+        //var top = pbox.getBoundingClientRect().top;
+        var top = 0;
+        var time;
+        //console.log(`top is ${top}`);
+        let playFlag = true;
+        audio.play();
+        timer();
+        img.addEventListener('click',event => {
+            if(playFlag){
+                audio.pause();
+                closeTimer();
+                img.classList.remove('player');
+            }else{
+                audio.play(); 
+                timer();
+                img.classList.add('player');
+            }
+            playFlag = !playFlag;
+        })
+        
+        function timer(){
+            time = setInterval(function(){
+                if(top<-650){
+                    top = 0;
+                }
+                top = top - 1;
+                pbox.style.top = top + 'px';
+            },300)
+        }
+        function closeTimer(){
+            clearInterval(time);
+        }
+    }
+
+</script>
+</html>

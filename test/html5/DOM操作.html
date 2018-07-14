@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM操作 </title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li id="li11">111</li>
+            <li id="li12">222</li>
+            <!--111-->
+            <li id="li13">333
+                    <ul>
+                            <li id="li131">111</li>
+                            <li id="li132">222</li>
+                            <li id="li133">333</li>
+                        </ul>
+            </li>
+            <!--111-->
+        </ul>
+    </div>
+    <ul>
+        <li id="li1">111</li>
+        <li id="li2">222</li>
+        <li id="li3">333</li>
+    </ul>
+</body>
+<script>
+    const btn = document.createElement("buttom");
+    btn.setAttribute("class","btn");
+    btn.setAttribute("id","btn");
+    var body = document.body;
+   // console.log(body);
+    body.appendChild(btn);
+
+    const scp = document.createElement("script");
+    scp.type = "text/script";
+    scp.src = "./test.js";
+    body.appendChild(scp);
+
+    /*用递归实现一个查DOM的功能document.getElementById*/
+    function getElementById(node, id){
+        if(!node) return null;
+        if(node.id === id) return node;
+        for(var i = 0; i < node.childNodes.length; i++){
+            var found = getElementById(node.childNodes[i], id);
+            if(found) return found;
+        }
+        return null;
+    }
+    console.log(getElementById(document, "li3"));
+
+    /**/
+    function getElementsName(node,name){
+        var _name = name.toLocaleUpperCase();
+        var arrNode = [];
+        if(!node) return arrNode;
+        if(node.nodeName === _name) arrNode.push(node);
+        for(let i=0;i<node.childNodes.length;i++){
+            var found = getElementsName(node.childNodes[i], _name);
+            if(found) arrNode.push(node);
+        }
+        return arrNode;
+    }
+    console.log(getElementsName(document,'body'));
+
+    /*查询一个元素n级父元素*/
+    function retParent(e,n){
+        while(e&&n){
+            e=e.parentElement;
+            n--;
+        }
+        return e;
+    }
+
+    /*查询一个元素定n个兄弟元素*/
+    function retSibling(e,n){
+        while(e&&n){
+            if(n>0){
+                e=e.nextElementSibling;
+                n--
+            }else{
+                e=e.previousElementSibling;
+                n++
+            }
+        }
+        return e;
+    }
+
+    /*封装一个insertAfter()方法类似于insertBefore()
+    * 注意在原型链上实现方法
+    */
+    Element.prototype.insertAfter = function(tag,aft){
+        var nextSibling = aft.nextElementSibling;
+        if(nextSibling){
+            this.insertBefore(tag,nextSibling);
+        }else{
+            this.appendChild(tag);
+        }
+    }
+    var p = document.createElement("p");
+    p.innerText = "ppp";
+</script>
+</html>

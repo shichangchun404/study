@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" /> 
+    <title>双十一</title>
+    <style>
+        *{  
+            margin: 0px;
+            border: 0px;
+            padding: 0px;
+            border-image-width: 0px;
+            box-sizing: border-box;
+        }
+        .img1{
+            height: 300px;
+        }
+        .img2{
+            height: 412px;
+        }
+        .img3{
+            height: 572px;
+        }
+    </style>
+</head>
+<body class="page">
+    <div class="f1">
+        <img class="img1" src="./img/double-eleven_01.png" alt="">
+    </div>
+    <div class="f2">
+        <img class="img2" src="./img/double-eleven_02.png" alt="">
+        <span class="btn-1"></span>
+    </div>
+    <div class="f3">
+        <img class="img3" data-id="111" data-src="./img/double-eleven_03.png" alt="">
+    </div>
+    <div class="f3">
+            <img class="img3" data-id="222" data-src="./img/double-eleven_04.png" alt="">
+        </div>
+</body>
+<script>
+    var scrollElement = document.getElementsByTagName("body")[0];
+    viewH = document.documentElement.clientHeight;
+    
+    function lazyload(){
+        var nodes = document.querySelectorAll('img[data-src]');
+        Array.prototype.forEach.call(nodes,function(item,index){
+            var rect;
+            if(item.dataset.src==='') return;
+            rect = item.getBoundingClientRect();
+            if(rect.bottom>=0 && rect.top < viewH){
+                (function(item){
+                    var img = new Image();
+                    img.onload = function(){
+                        item.src = img.src;
+                    }
+                    img.src = item.dataset.src
+                    item.dataset.src = ''
+                })(item)
+            }
+        })
+    }
+    lazyload();
+    
+    scrollElement.addEventListener('touchmove',throttle(lazyload,100,1000));//移动端
+    scrollElement.addEventListener('mousewheel',throttle(lazyload,100,1000));//pc端firefox DOMMouseScroll
+    
+    function throttle(fun, delay, time) {
+        var timeout,
+        startTime = new Date();
+        return function() {
+            var context = this,//scrollElement对象
+            args = arguments,
+            curTime = new Date();
+            clearTimeout(timeout);
+            if (curTime - startTime >= time) {
+                fun.apply(context, args);
+                startTime = curTime;
+            } else {
+                timeout = setTimeout(fun, delay);
+            }
+        };
+    };
+
+  
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义指令</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+   
+    .box{
+        width: 50px;
+        height: 50px;
+        position:absolute;
+    }
+    .box-1{
+        background: red;
+        top: 0px;
+        left: 0px;
+    }
+    .box-2{
+        background:blue;
+        top: 0px;
+        right: 0px;
+    }
+    p{
+        width: 100%;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+        <div v-drag class="box box-1"></div>
+        <div v-drag class="box box-2"></div>
+    </div>
+    
+</body>
+<script src="../js/vue.min.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:"shicc"
+        },
+        directives:{
+            drag:function(el){
+                el.onmousedown = function(e1){
+                    console.log("鼠标按下点距离显示屏左边距离"+e1.clientX);
+                    console.log("矩形左边框距离父级元素左边距离"+el.offsetLeft);
+                    var x = e1.clientX - el.offsetLeft;
+                    var y = e1.clientY - el.offsetTop;
+                    console.log(x,y);
+                    //拖动
+                    document.onmousemove = function(e2){
+                        var left = e2.screenX - x;
+                        var top = e2.clientY - y;
+                        el.style.left = left + "px";
+                        el.style.top = top + "px";
+                    }
+                    //停止拖动
+                    document.onmouseup = function(e3){
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                }
+            }
+        }
+    })
+</script>
+</html>

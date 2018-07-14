@@ -1,0 +1,56 @@
+@function px2rem($px){
+    $rem: 37.5px;
+    @return ($px / $rem) + rem;
+}
+body{
+    background: rgb(187, 237, 108);
+}
+.top-img{
+    width: 100%;
+    height: px2rem(340px);
+    background: url(../img/ansque_bg.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    .act-time{
+        position: absolute;
+        height: px2rem(36px);
+        width: px2rem(280px);
+        margin: auto auto;
+        left: 0px;
+        right: 0px;
+        bottom: px2rem(20px);
+        border-radius:px2rem(18px);;
+        background: #84c229;
+        text-align: center;
+        font-size: px2rem(16px);
+        line-height: px2rem(36px);
+        color: #fff;
+    }
+}
+.code-body{
+    position: relative;
+    width: 100%;
+    height: px2rem(200px);
+    img{
+        width: px2rem(180px);
+        height: px2rem(180px);
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+}
+footer {
+    padding-top: px2rem(20px);
+    p{
+        width: 100%;
+        height: px2rem(20px);
+        font-size: px2rem(14px);
+        line-height: px2rem(20px);
+        text-align: center;
+        color: #0a79bf;
+    }
+   
+
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>非父子组件间通信</title>
+    <style>
+    button{
+        width: 200px;
+        height:40px;
+        background: aqua;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 20px;
+        line-height: 40px;
+        display: block;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <childa></childa>
+        <childb></childb>
+        <childc></childc>
+        
+        
+    </div>
+
+    <template id="childa">
+        <div>
+            <h2>A组件信息{{msg}}</h2>
+            <button @click="atoc">将A组件数据给C</button>
+        </div>
+    </template>
+    <template id="childb">
+        <div>
+            <h2>B组件信息{{msg}}</h2>
+            <button @click="btoc">将B组件数据给C</button>
+        </div>
+    </template>
+    <template id="childc">
+        <div>
+            <h2>C组件信息{{msg}}</h2>
+        </div>
+    </template>
+</body>
+<script src="../js/vue.min.js"></script>
+<script>
+    /*
+    有时候，非父子关系的两个组件之间也需要通信。在简单的场景下，
+    可以使用一个空的 Vue 实例作为事件总线：
+    */
+    var bus = new Vue();
+    var A = {
+        template:"#childa",
+        data(){
+            return{
+                msg:"aaa"
+            }
+        },
+        methods:{
+            atoc(){
+                bus.$emit("eventa",this.msg)
+                console.log("eventa")
+            }
+        }
+    }
+    var B = {
+        template:"#childb",
+        data(){
+            return{
+                msg:"bbb"
+            }
+        },
+        methods:{
+            btoc(){
+                bus.$emit("eventb",this.msg)
+                console.log("eventb")
+            }
+        }
+    }
+    var C = {
+        template:"#childc",
+        data(){
+            return{
+                flag:"ccc",
+                msg:""
+            }
+        },
+        mounted(){//c组件在挂载时开始，让事件总线监听eventa  eventb当a b事件触发时，c组件及时更新到数据
+            bus.$on("eventa",msg=>{
+                console.log(this)
+                this.msg = msg
+            })
+            bus.$on("eventb",msg=>{
+                this.msg = msg
+            })
+        }
+    }
+    var vm = new Vue({
+        el:"#app",
+        components:{
+            "childa":A,
+            "childb":B,
+            "childc":C,
+        }
+    })
+</script>
+</html>

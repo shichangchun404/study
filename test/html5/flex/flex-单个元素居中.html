@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹性布局</title>
+    <style>
+        *{
+            font-size: 12px;
+        }
+        .box{
+            display:flex;
+            justify-content:space-around;
+        }
+        .box1{
+            width:150px;
+            border:pink 1px solid;
+            
+        }
+        .parent{
+            width: 100px;
+            height:100px;
+            border:rosybrown 1px solid;
+            display: flex;
+            margin-top: 30px;
+        }
+        .parent1{
+            justify-content:center;
+        }
+        .child{
+            background: red;
+            width:20px;
+            height:30px;
+        }
+        .parent2{
+            align-items:center;
+        }
+        .parent3{
+            justify-content:center;
+            align-items:center;
+        }
+        .box2 .parent1{
+            justify-content: space-between;
+        } 
+        .box2 .parent1 .child2{
+            flex:1;
+            background: orange;
+        } 
+        .box2 .parent2{
+            align-items: space-between;
+           flex-direction:column;
+           /*flex-direction:column-reverse;*//*有上下123变为321*/
+        } 
+        .box2 .parent2 .child{
+            width:100%;
+        }
+        .box2 .parent2 .child2{
+            flex:1;
+            background: orange;
+        } 
+        .box2 .parent3{
+           /* align-items: center;*/
+           flex-direction:row;
+        }
+        .box2 .parent3 .child{
+            flex:1;
+        } 
+        .box2 .parent3 .child2{
+            background: orange;
+        } 
+        .box2 .parent4{
+            /*align-items:center;*/
+            flex-direction:column;
+        }
+        .box2 .parent4 .child{
+            width: 100%;
+            flex:1;
+        }
+        .box2 .parent4 .child2{
+            background: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">
+            <div class="parent parent1">
+                <div class="child"></div>
+            </div>
+            <p>justify-content:center;</p>
+        
+            <div class="parent parent2">
+                <div class="child"></div>
+            </div>
+            <p>align-items:center</p>
+        
+            <div class="parent parent3">
+                <div class="child"></div>
+            </div>
+            <p>justify-content:center;align-items:center</p>
+        </div>
+
+        <div class="box1 box2">
+            <div class="parent parent1">
+                <div class="child"></div>
+                <div class="child child2"></div>
+                <div class="child"></div>
+            </div>
+            <p>水平三栏布局 父级给justify-content:space-between;
+                flex-direvtion:row是默认的;
+                child1 child3宽度订制 child2给flex:1
+            </p>
+        
+            <div class="parent parent2">
+                <div class="child">11</div>
+                <div class="child child2">22</div>
+                <div class="child">33</div>
+            </div>
+            <p>垂直三栏布局父级给align-items:space-between;
+                flex-direvtion:column;child给固定高度，child2给flex:1</p>
+        
+            <div class="parent parent3">
+                <div class="child"></div>
+                <div class="child child2"></div>
+                <div class="child"></div>
+            </div>
+            <p>水平平均分布</p>
+
+            <div class="parent parent4">
+                    <div class="child"></div>
+                    <div class="child child2"></div>
+                    <div class="child"></div>
+                </div>
+                <p>水平平均分布</p>
+        </div>
+
+        <div class="box1 box3">
+            <div class="parent parent1">
+                <div class="child"></div>
+            </div>
+            <p>justify-content:center;</p>
+        
+            <div class="parent parent2">
+                <div class="child"></div>
+            </div>
+            <p>align-items:center</p>
+        
+            <div class="parent parent3">
+                <div class="child"></div>
+            </div>
+            <p>justify-content:center;align-items:center</p>
+        </div>
+    </div>
+</body>
+<script>
+    /**
+     * justify-content/align-items 与flex-direction是成对使用的
+     * 由于flex-direction:row是默认值，故使用justify-content时无感知
+     * 但是在用align-items属性是，必须显示申明flex-direction属性column
+    */
+</script>
+</html>

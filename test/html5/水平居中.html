@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>水平居中</title>
+    <style>
+        .box1{
+            width: 200px;
+            background:aquamarine;
+            text-align: center;
+            margin:0px auto;
+        }
+        .box2{
+            margin-top: 20px;
+            text-align: center;
+        }
+        .box22{
+            background: azure;
+            display: inline-block;
+        }
+        .box3{
+            margin-top: 20px;
+            text-align: center;
+            position: absolute;
+            left:50%;
+        }
+        .box33{
+            position:relative;
+            left: -50%;
+            background: bisque;
+        }
+        .box4{
+            margin-top: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">1111</div>
+    <div class="box2">
+        <div class="box22">222</div>
+    </div>
+    <div class="box3">
+       <div class="box33">3333</div> 
+    </div>
+    <br>
+    <div class="box4">
+        <div class="box44">444</div>
+    </div>
+</body>
+</html>

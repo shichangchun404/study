@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件间通信</title>
+</head>
+<body>
+    <div id="app">
+        <gloab></gloab>
+        <shicc></shicc>
+        
+        <bm></bm>
+    </div>
+
+    <template id="shicc">
+        <div>
+            <h2>我是shicc，我来自{{from}}，我喜欢{{love.p}}</h2>
+            <h2>我儿子叫{{sonname}}，今年{{sonage}}</h2>
+            <h2>通过$set获取-我儿子叫{{son.sonname}}</h2>
+            <h2>今年{{son.sonage}}</h2>
+            <hr>
+            <!--只能在父组件内部使用子组件
+                注意props绑定及$emit()事件监听均在子组件标签上操作
+            -->
+            <myson @son-event="getSonMsg" :father1="fatherMsg1" :father2="fatherMsg2"></myson>
+            <div></div>
+        </div>
+    </template>
+
+    <template id="myson">
+        <div>
+            <h3>{{msg}}</h3>
+            <h3 >我爸爸对我说{{father1}},{{father2}}</h3>
+        </div>
+    </template>
+</body>
+<script src="../js/vue.min.js"></script>
+<script>
+    /*定义全局组件*/
+    Vue.component("gloab",{
+        template:"<h1>我是全局组件1</h1>",
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:"hello beijing",
+            user:{
+                age:26
+            }
+        },
+        components:{
+            "shicc":{
+                template:"#shicc",
+                data(){
+                    return{
+                        from:"安庆",
+                        love:{
+                            p:"鲍茗",
+                            f:"apple"
+                        },
+                        son:{},
+                        fatherMsg1:"你要好好学习",
+                        fatherMsg2:"天天向上",
+                        sonname:"",
+                        sonage:""
+                    }
+                },
+                methods:{
+                    getSonMsg(name,age){
+                        console.log("接受son-event");
+                        this.sonname = name;
+                        this.sonage = age;
+                        this.$set(this.son,"sonname",name+11); //不行
+                        this.$set(this.son,"sonage",age+11) //不行
+                    }
+                },
+                components:{
+                    "myson":{
+                        template:"#myson",
+                        data(){
+                            return{
+                                msg:"我是shicc的子组件",
+                                sonname:"施小宝",
+                                age:"2岁"
+                            }
+                        },
+                        props:["father1","father2"],
+                        created:function(){
+                            this.talk2Father()
+                        },
+                        methods:{
+                            talk2Father(){
+                                console.log(this);
+                                this.$emit("son-event",this.sonname,this.age);
+                                console.log("emit son-event over");
+                            }
+                        }
+                    }
+                }
+            },
+            "bm":{
+                template:"<h2>我是子组件B</h2>"
+            }
+        }
+    })
+   
+</script>
+</html>

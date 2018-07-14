@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双十一</title>
+    <link rel="stylesheet" href="./css/index.css">
+    
+</head>
+<body>
+    <div class="f1"></div>
+    <div class="f2">
+        <span class="btn-1"></span>
+        
+    </div>
+    <div class="f3"></div>
+</body>
+<script>
+    window.onload = function(){
+        const baseWidth = 750;//设计稿是多少 给多少 方便后面像素赋值
+        const clientWidth = document.documentElement.clientWidth;
+        const fontSize = clientWidth/baseWidth * 100;
+        document.documentElement.style.fontSize = fontSize + "px";
+    }
+</script>
+</html>

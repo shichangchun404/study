@@ -1,0 +1,46 @@
+@function px2rem($px){
+    $rem : 50px;
+    @return ($px/$rem) + rem;
+}
+*{  
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-size: px2rem(16px);
+}
+.f1{
+    height: px2rem(300px);
+    background: url("../img/double-eleven_01.png");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+}
+.f2{
+    position: relative;
+    height: px2rem(412px);
+    background: url("../img/double-eleven_02.png");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    span{
+        position: absolute;
+        width:px2rem(180px);
+        height: px2rem(68px);
+        background: #ccc;
+        left: 0px;
+        right: 0px;
+        margin: 0px auto;
+        top: px2rem(330px);
+    }
+    & .btn-1{
+        background: url("../img/switch-grab.png");
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+    }
+}
+.f3{
+    height: px2rem(572px);
+    background: url("../img/double-eleven_03.png");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+}

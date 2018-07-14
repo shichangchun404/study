@@ -1,0 +1,290 @@
+body {
+  overflow: auto;
+  background-color: #ceedff; }
+
+.header {
+  width: 100%;
+  height: 6.62rem;
+  background: url(../img/banner.png) no-repeat;
+  background-size: 100% 100%;
+  overflow: hidden; }
+  .header .ksxd {
+    width: 2.12rem;
+    height: 0.46rem;
+    border-radius: 0.23rem;
+    background-color: #5dc3c7;
+    margin-left: 0.3rem;
+    margin-top: 5.9rem;
+    font-size: 0.32rem;
+    color: #fff;
+    text-align: center; }
+
+.middle {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 5.5rem; }
+  .middle .table {
+    position: absolute;
+    width: 6.9rem;
+    left: 50%;
+    transform: translateX(-50%); }
+    .middle .table li {
+      margin-top: 0.2rem; }
+    .middle .table .li1 {
+      display: flex;
+      justify-content: space-between; }
+      .middle .table .li1 input {
+        width: 3.45rem;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-align: center;
+        color: #535353; }
+      .middle .table .li1 .addr {
+        width: 3.32rem; }
+    .middle .table .li2 {
+      display: flex;
+      justify-content: space-between; }
+      .middle .table .li2 .detailAddr {
+        width: 4.5rem;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-align: center; }
+      .middle .table .li2 .selectAddr-btn {
+        width: 2.24rem;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-align: center;
+        background-color: #5dc3c7;
+        color: #fff; }
+    .middle .table .li3 {
+      position: relative; }
+      .middle .table .li3 .logo {
+        position: absolute;
+        width: 0.36rem;
+        height: 0.38rem;
+        left: 0.38rem;
+        top: 0.21rem;
+        background: url(../img/name.png) no-repeat;
+        background-size: 100% 100%; }
+      .middle .table .li3 .star {
+        color: red;
+        position: absolute;
+        right: 0.4rem;
+        top: 0px;
+        line-height: 0.8rem; }
+      .middle .table .li3 .name {
+        width: 100%;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-indent: 1.14rem; }
+    .middle .table .li4 {
+      position: relative; }
+      .middle .table .li4 .logo {
+        position: absolute;
+        width: 0.36rem;
+        height: 0.38rem;
+        left: 0.38rem;
+        top: 0.21rem;
+        background: url(../img/dh.png) no-repeat;
+        background-size: 100% 100%; }
+      .middle .table .li4 .star {
+        color: red;
+        position: absolute;
+        right: 0.4rem;
+        top: 0px;
+        line-height: 0.8rem; }
+      .middle .table .li4 .name {
+        width: 100%;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-indent: 1.14rem; }
+    .middle .table .li5 {
+      position: relative; }
+      .middle .table .li5 .logo {
+        position: absolute;
+        width: 0.36rem;
+        height: 0.38rem;
+        left: 0.38rem;
+        top: 0.21rem;
+        background: url(../img/bz.png) no-repeat;
+        background-size: 100% 100%; }
+      .middle .table .li5 .name {
+        width: 100%;
+        height: 0.8rem;
+        border-radius: 0.08rem;
+        border: #c8c7c7 1px solid;
+        text-indent: 1.14rem; }
+
+.commbox {
+  position: relative;
+  height: 5.82rem;
+  background: url(../img/kdxg.png) no-repeat;
+  background-size: 100% 100%;
+  background-color: #fff; }
+  .commbox .phonebox, .commbox .commit-btn {
+    width: 6.9rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); }
+  .commbox .phonebox {
+    display: flex;
+    justify-content: space-around;
+    height: 1.06rem; }
+    .commbox .phonebox div {
+      position: relative;
+      width: 2.42rem; }
+      .commbox .phonebox div .onsel, .commbox .phonebox div .sel {
+        width: 0.37rem;
+        height: 0.37rem;
+        display: inline-block;
+        position: absolute;
+        top: 0.33rem; }
+      .commbox .phonebox div .onsel {
+        background: url(../img/onsel.png) no-repeat;
+        background-size: 100% 100%; }
+      .commbox .phonebox div .sel {
+        background: url(../img/sel.png) no-repeat;
+        background-size: 100% 100%; }
+      .commbox .phonebox div p {
+        display: inline-block;
+        line-height: 1.06rem;
+        font-size: 0.32rem;
+        color: #535353;
+        text-indent: 0.48rem; }
+  .commbox .commit-btn {
+    height: 0.86rem;
+    background-color: #f57c1f;
+    font-size: 0.44rem;
+    text-align: center;
+    line-height: 0.86rem;
+    color: #fff;
+    border: #f57c1f 1px solid;
+    border-radius: 0.16rem;
+    top: 1.23rem; }
+
+.wxts-box {
+  position: relative;
+  background-color: #ceedff;
+  top: -0.3rem; }
+  .wxts-box .wxts {
+    width: 6.9rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); }
+    .wxts-box .wxts .title {
+      width: 2.11rem;
+      height: 0.46rem;
+      background-color: #5dc3c7;
+      border-radius: 0.23rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.32rem;
+      line-height: 0.46rem; }
+    .wxts-box .wxts .wxts-cont {
+      margin-top: 0.2rem;
+      padding: 0.46rem 0.24rem;
+      box-sizing: border-box;
+      background-color: #fef7c0; }
+      .wxts-box .wxts .wxts-cont p {
+        line-height: 0.38rem;
+        font-size: 0.24rem;
+        color: #fc7100; }
+
+.kdzf-box {
+  position: relative;
+  padding-bottom: 0.6rem; }
+  .kdzf-box .kdzf {
+    width: 6.9rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); }
+    .kdzf-box .kdzf .title {
+      width: 2.11rem;
+      height: 0.46rem;
+      background-color: #5dc3c7;
+      border-radius: 0.23rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.32rem;
+      line-height: 0.46rem; }
+    .kdzf-box .kdzf .kdzf-cont {
+      margin-top: 0.2rem;
+      padding: 0.46rem 0.24rem;
+      box-sizing: border-box;
+      background-color: #fef7c0; }
+      .kdzf-box .kdzf .kdzf-cont p {
+        line-height: 0.38rem;
+        font-size: 0.24rem;
+        color: #fc7100; }
+
+.dailog {
+  height: 100%; }
+  .dailog .gray {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 88;
+    top: 0px;
+    left: 0px; }
+  .dailog .citybox {
+    position: fixed;
+    top: 2.28rem;
+    height: 7.8rem;
+    width: 100%;
+    background-color: #fff;
+    z-index: 99; }
+    .dailog .citybox .top {
+      position: relative;
+      height: 0.76rem;
+      line-height: 0.76rem;
+      font-size: 0.3rem;
+      text-align: center; }
+      .dailog .citybox .top .close {
+        position: absolute;
+        display: inline-block;
+        width: 0.29rem;
+        height: 0.29rem;
+        background: url(../img/close.png) no-repeat;
+        background-size: 100% 100%;
+        right: 0.46rem;
+        top: 0.29rem; }
+    .dailog .citybox .city-nav {
+      height: 0.76rem;
+      line-height: 0.76rem;
+      border-bottom: #e3e3e3 1px solid;
+      font-size: 0.3rem;
+      color: #505050; }
+      .dailog .citybox .city-nav .ciyt-name {
+        width: 1.88rem;
+        text-align: center;
+        display: inline-block;
+        box-sizing: border-box; }
+      .dailog .citybox .city-nav .onsel {
+        border-bottom: #3fa354 2px solid;
+        color: #3fa354; }
+    .dailog .citybox .city-list {
+      overflow: auto; }
+      .dailog .citybox .city-list li {
+        height: 0.68rem;
+        line-height: 0.68rem;
+        text-align: center; }
+      .dailog .citybox .city-list .onsel {
+        color: #3fa354; }
+    .dailog .citybox .sure {
+      position: absolute;
+      bottom: 0px;
+      height: 0.9rem;
+      line-height: 0.9rem;
+      width: 100%;
+      font-size: 0.3rem;
+      text-align: center;
+      color: #fff;
+      background-color: #3fa354; }
