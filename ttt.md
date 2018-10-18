@@ -5,3 +5,9 @@ Status Code: 200 OK
 Remote Address: 10.160.104.68:80
 Referrer Policy: no-referrer-when-downgrade
 ```
+```
+ function add(n,m){
+                    console.log(n,m)
+                    return n+m
+                }
+                ```
