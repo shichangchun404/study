@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>闯关答题</title>
-    <script src="./js/setview.js"></script>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/comm.css">
-</head>
-<body>
-    <header class="layout">
-        <div class="bg01">
-            <span class="act-time">活动时间：2018年4月-2018年5月</span>
-        </div>
-    </header>
-    <footer>
-        <div class="rule-btn"></div>
-        <div class="start-btn"></div>
-    </footer>
 
-    <!-- 弹框 -->
-    <div class="misk hide"></div>
-    <div class="dialog hide">
-        <p class="p1"></p>
-        <p class="p2">关注<span class="org-color">安徽移动10086</span>公众号，输入“<span class="org-color">闯+地市名称</span>”口令即可开启游戏。游戏共5道题，在60秒内全部答对，即可获得<span class="org-color">500M流量</span>奖励。</p>
-        <p class="p2">限前30万名用户参与，同一用户只有一次获奖机会（同一微信号、手机号均视为同一用户）。所赠送的流量均为套餐外优惠流量，将在用户无套餐内流量可用时可用。流量领取后当月生效，月底失效。</p>
-        <div class="know-btn"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闯关答题</title>
+  <script src="./js/setview.js"></script>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/comm.css">
+</head>
+
+<body>
+  <header class="layout">
+    <div class="bg01">
+      <span class="act-time">活动时间：2018年4月-2018年5月</span>
     </div>
+  </header>
+  <footer>
+    <div class="rule-btn"></div>
+    <div class="start-btn"></div>
+  </footer>
+
+  <!-- 弹框 -->
+  <div class="misk hide"></div>
+  <div class="dialog hide">
+    <p class="p1"></p>
+    <p class="p2">关注<span class="org-color">安徽移动10086</span>公众号，输入“<span class="org-color">闯+地市名称</span>”口令即可开启游戏。游戏共5道题，在60秒内全部答对，即可获得<span
+        class="org-color">500M流量</span>奖励。</p>
+    <p class="p2">限前30万名用户参与，同一用户只有一次获奖机会（同一微信号、手机号均视为同一用户）。所赠送的流量均为套餐外优惠流量，将在用户无套餐内流量可用时可用。流量领取后当月生效，月底失效。</p>
+    <div class="know-btn"></div>
+  </div>
 </body>
 <script src="./js/zepto.min.js"></script>
 <script>
-    $(function(){
-        $(".rule-btn").click(function(){
-            isShowRule("Y");
-        });
-        $(".know-btn").click(function(){
-            isShowRule("N");
-        });
-        /*开始答题*/
-        $(".start-btn").click(function(){
-            window.location.href="./active.html"
-        })
+  $(function () {
+    $(".rule-btn").click(function () {
+      isShowRule("Y");
+    });
+    $(".know-btn").click(function () {
+      isShowRule("N");
+    });
+    /*开始答题*/
+    $(".start-btn").click(function () {
+      window.location.href = "./active.html"
     })
-    /*是否展示活动规则*/
-    function isShowRule(type){
-        if(type=="Y"){
-            $(".misk").removeClass("hide");
-            $(".dialog").removeClass("hide");
-        }else{
-            $(".misk").addClass("hide");
-            $(".dialog").addClass("hide");
-        }
+  })
+  /*是否展示活动规则*/
+  function isShowRule(type) {
+    if (type == "Y") {
+      $(".misk").removeClass("hide");
+      $(".dialog").removeClass("hide");
+    } else {
+      $(".misk").addClass("hide");
+      $(".dialog").addClass("hide");
     }
+  }
 </script>
+
 </html>
