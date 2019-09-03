@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node /模块/ES/dist/index.js",
     "build": "babel test/test.js --out-file outjs/out.js --presets es2015",
     "sass": "node-sass beijing/pages/broadband/css/index.scss beijing/pages/broadband/css/index.css"
   },
