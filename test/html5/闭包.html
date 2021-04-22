@@ -33,7 +33,7 @@
     /*方式1 通过call方法*/
     Array.prototype.forEach.call(lis,(el,i)=>{
         el.onclick = function(){
-            console.log(i)
+            console.log('通过call方法 ', i)
         }
     })
 
@@ -55,13 +55,13 @@
     /*对上方法改良 通过立即执行函数解决（函数遇到表达式就会立即执行）
     图片懒加载处用到
     */
-     for(var i=0;i<lis.length;i++){
-         (function(j){
-            lis[j].onclick = function(){
-                console.log(j)
-            }
-         }(i))
-     }
+    //  for(var i=0;i<lis.length;i++){
+    //      (function(j){
+    //         lis[j].onclick = function(){
+    //             console.log('通过立即执行函数解决 ', j)
+    //         }
+    //      }(i))
+    //  }
 
 
     // lis.forEach(el=>{  报错 lis是类数组 其原型上没有forEach方法，故需要Array.prototype.forEach.call()的形式调用
