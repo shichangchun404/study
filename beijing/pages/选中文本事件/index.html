@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>测试文本选中 并在其位置弹出提示框</title>
   <style>
     .select-widFeedback{
       line-height: 26px;
@@ -56,8 +56,7 @@
 </body>
 <script>
 select(document, tanchu);
-/*=select[[
-*
+/*
 * 跨浏览器选中文字事件
 * @param
 * object o 响应选中事件的DOM对象，required
@@ -70,7 +69,7 @@ select(document, tanchu);
 function select(o, fn){
   o.onmouseup = function(e){
     var event = window.event || e;
-    var position = {'x':e.clientX+10,'y':e.clientY+10}
+    var position = {'x':e.clientX+10,'y':e.clientY+14}
     var target = event.srcElement ? event.srcElement : event.target;
     if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
         //Firefox在文本框内选择文字
@@ -78,7 +77,7 @@ function select(o, fn){
         var endIndex=target.selectionEnd;
         if(staIndex!=endIndex){
           var sText=target.value.substring(staIndex,endIndex);
-          fn(sText,target);
+          fn(sText,target, position);
         }
     } else {
       //获取选中文字
@@ -90,17 +89,55 @@ function select(o, fn){
     }
   }
 }
-/*]]select=*/
+/**
+ * 弹出框
+ */
 function tanchu(txt,target,position){
-  //alert("文字属于"+tar.tagName+"元素，选中内容为："+txt);
   console.log(txt, target, position)
-
   var style = document.createElement("style");
   style.type = "text/css";
   try{
   　　style.appendChild(document.createTextNode(`.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`));
   }catch(ex){
   　　style.styleSheet.cssText = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`;//针对IE
+  }
+  var head = document.getElementsByTagName("head")[0];
+  head.appendChild(style);
+}
+document.onclick=function(e){
+  var event = window.event || e;
+  var target = event.srcElement ? event.srcElement : event.target;
+  var style = document.createElement("style");
+  //console.log('event ===', event)
+  //var btnNum = event.button;
+  // if (btnNum==2){
+  //   console.log("您点击了鼠标右键！")
+  // } else if(btnNum==0){
+  //   console.log("您点击了鼠标左键！")
+  // }else if(btnNum==1){
+  //   console.log("您点击了鼠标中键！");
+  // }
+
+  var sText = ''
+  if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
+    //Firefox在文本框内选择文字
+    var staIndex=target.selectionStart;
+    var endIndex=target.selectionEnd;
+    if(staIndex!=endIndex){
+      sText=target.value.substring(staIndex,endIndex);
+    }
+  } else {
+    //获取选中文字
+    sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
+  }
+  if (sText) {
+    return
+  }
+  style.type = "text/css";
+  try{
+  　　style.appendChild(document.createTextNode(`.select-widFeedback{display: none;}`));
+  }catch(ex){
+  　　style.styleSheet.cssText = `.select-widFeedback{display: none;}`;//针对IE
   }
   var head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
