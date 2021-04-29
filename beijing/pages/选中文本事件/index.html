@@ -5,21 +5,57 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .select-widFeedback{
+      line-height: 26px;
+      height: 28px;
+      border: 1px solid #ff6a00;
+      padding-left: 8px;
+      padding-right: 6px;
+      font-size: 0;
+      width: 82px;
+      box-sizing: border-box;
+      cursor: pointer;
+      background-color: #fff;
+    }
+    .select-widFeedback-icon{
+      width: 12.1px;
+      height: 11.6px;
+      display: inline-block;
+      background-size: 12.1px 11.6px;
+      background-image: url('https://img.alicdn.com/tfs/TB1833Hq9f2gK0jSZFPXXXsopXa-32-32.png');
+      vertical-align: sub;
+      background-repeat: no-repeat;
+    }
+    .select-widFeedback-text{
+      font-size: 12px;
+      color: #ff6a00;
+      font-family: PingFangSC-Regular;
+      display: inline-block;
+      margin-left: 3px;
+    }
+    .hide{
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div>
     在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
-
-从定义中我们提炼出几个关键字：组件、结构、关系；
-
-组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
-结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
-关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
-架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+    从定义中我们提炼出几个关键字：组件、结构、关系；
+    组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+    结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+    关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+    架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
   </div>
+
+  <div class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3; ">
+    <div class="select-widFeedback-icon"></div>
+    <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
+    </div>
 </body>
 <script>
-  select(document, tanchu);
+select(document, tanchu);
 /*=select[[
 *
 * 跨浏览器选中文字事件
@@ -32,31 +68,42 @@
 * |-mouseP 触发mouseup事件时鼠标坐标
 */
 function select(o, fn){
-o.onmouseup = function(e){
-var event = window.event || e;
-var target = event.srcElement ? event.srcElement : event.target;
-if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
-//Firefox在文本框内选择文字
-var staIndex=target.selectionStart;
-var endIndex=target.selectionEnd;
-if(staIndex!=endIndex){
-var sText=target.value.substring(staIndex,endIndex);
-fn(sText,target);
-}
-}
-else{
-//获取选中文字
-var sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
-if (sText != "") {
-//将参数传入回调函数fn
-fn(sText, target);
-}
-}
-}
+  o.onmouseup = function(e){
+    var event = window.event || e;
+    var position = {'x':e.clientX+10,'y':e.clientY+10}
+    var target = event.srcElement ? event.srcElement : event.target;
+    if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
+        //Firefox在文本框内选择文字
+        var staIndex=target.selectionStart;
+        var endIndex=target.selectionEnd;
+        if(staIndex!=endIndex){
+          var sText=target.value.substring(staIndex,endIndex);
+          fn(sText,target);
+        }
+    } else {
+      //获取选中文字
+      var sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
+      if (sText != "") {
+        //将参数传入回调函数fn
+        fn(sText, target, position);
+      }
+    }
+  }
 }
 /*]]select=*/
-function tanchu(txt,tar){
-alert("文字属于"+tar.tagName+"元素，选中内容为："+txt);
+function tanchu(txt,target,position){
+  //alert("文字属于"+tar.tagName+"元素，选中内容为："+txt);
+  console.log(txt, target, position)
+
+  var style = document.createElement("style");
+  style.type = "text/css";
+  try{
+  　　style.appendChild(document.createTextNode(`.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`));
+  }catch(ex){
+  　　style.styleSheet.cssText = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`;//针对IE
+  }
+  var head = document.getElementsByTagName("head")[0];
+  head.appendChild(style);
 }
 </script>
 </html>
