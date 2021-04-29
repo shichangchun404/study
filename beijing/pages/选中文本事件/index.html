@@ -57,14 +57,7 @@
 <script>
 select(document, tanchu);
 /*
-* 跨浏览器选中文字事件
-* @param
-* object o 响应选中事件的DOM对象，required
-* function fn(sText,target,mouseP)选中文字非空时的回调函数，required
-* |-@param
-* |-sText 选中的文字内容
-* |-target 触发mouseup事件的元素
-* |-mouseP 触发mouseup事件时鼠标坐标
+* 选中文字事件
 */
 function select(o, fn){
   o.onmouseup = function(e){
