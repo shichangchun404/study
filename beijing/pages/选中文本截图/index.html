@@ -39,6 +39,7 @@
       width: 800px;
       height: 300px;
       top: 100px;
+      margin-left: 200px;
       overflow-x: hidden;
       overflow-y: scroll;
       border: 4px solid #ccc;
@@ -49,6 +50,7 @@
   </style>
 </head>
 <body>
+  <button onclick="print()">canvas绘图</button>
   <button onclick="convertCanvasToImage()">canvas转成图片</button>
   <div id="content">
     在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
@@ -65,22 +67,26 @@
   </div>
   <div id="dialog" class="dialog hide"></div>
 
-  <div id="imgDialog"></div>
+  <div id="imgBox"></div>
 </body>
 <script>
 var globalcanvas
 var selectObj = document.getElementById('content')
-var dialogObj = document.getElementById('dialog')
-var imgDialog = document.getElementById('imgDialog')
+var canvasBox = document.getElementById('dialog')
+var imgBox = document.getElementById('imgBox')
+var startPosition
+var endPosition
 select(selectObj, showTip);
-listenDocuentClick()
+listenDocumentClick()
+listenClickPosition(canvasBox)
 /*
-* 选中文字事件
+* content 选中文字事件
 */
 function select(o, fn){
   o.onmouseup = function(e){
     var event = window.event || e;
     var position = {'x':e.clientX+10,'y':e.clientY+14}
+    startPosition = {'x':e.clientX,'y':e.clientY}
     var target = event.srcElement ? event.srcElement : event.target;
     if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
         //Firefox在文本框内选择文字
@@ -99,10 +105,34 @@ function select(o, fn){
       }
     }
   }
-  o.onmousedown = function(){ //1清空dialog内容 2隐藏dialog弹窗
-    dialogObj.innerHTML = ''
+  o.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
+    var endPosition = {'x':e.clientX,'y':e.clientY}
+    canvasBox.innerHTML = ''
     setStyle(`.dialog{display: none;}`)
   }
+}
+
+/**
+ * 监听画布鼠标时间
+ */ 
+function listenClickPosition(o) {
+  o.onmousedown  = function(e){
+    startPosition = {'x':e.clientX-200,'y':e.clientY-100}
+    console.log('startPosition ', startPosition)
+  }
+  o.onmouseup = function(e){
+    endPosition = {'x':e.clientX-200,'y':e.clientY-100}
+    console.log('endPosition ', endPosition)
+    print(startPosition,endPosition)
+  }
+  // o.onmousemover = function(e) {
+  //   var currPosition = {'x':e.clientX-200,'y':e.clientY-100}
+  //   console.log('currPosition ', currPosition)
+  //   if (startPosition) { // 已按住鼠标
+      
+  //     print(startPosition,currPosition)
+  //   }
+  // }
 }
 
 /**
@@ -120,14 +150,14 @@ function showTip(txt,target,position){
 function getCanvasFromHtml(){
   html2canvas(document.body).then(function(canvas) {
     globalcanvas = canvas
-    dialogObj.appendChild(canvas)
+    canvasBox.appendChild(canvas)
   });
 }
 
 /**
  * 监听页面点击 取消tip弹窗
  */ 
-function listenDocuentClick(){
+function listenDocumentClick(){
   document.onclick=function(e){
     var event = window.event || e;
     var target = event.srcElement ? event.srcElement : event.target;
@@ -157,7 +187,7 @@ function convertCanvasToImage(canvas) {
 	var image = new Image();
 	image.src = globalcanvas.toDataURL("image/png");
   console.log('image ====', image)
-  imgDialog.appendChild(image)
+  imgBox.appendChild(image)
 	//return image;
 }
 
@@ -174,6 +204,16 @@ function setStyle(css){
   }
   var head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
+}
+
+/**
+ * 
+ */
+function print(s,e){
+  var ctx = globalcanvas.getContext("2d");
+  ctx.fillStyle = 'rgba(192, 80, 77, 0.5)';;
+  ctx.fillRect(s.x,s.y,e.x-s.x,e.y-s.y);
+  //ctx.fillRect(10,10,e.x,e.y);
 }
 
 
