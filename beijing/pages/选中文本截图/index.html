@@ -49,6 +49,7 @@
   </style>
 </head>
 <body>
+  <button onclick="convertCanvasToImage()">canvas转成图片</button>
   <div id="content">
     在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
     从定义中我们提炼出几个关键字：组件、结构、关系；
@@ -63,10 +64,14 @@
     <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
   </div>
   <div id="dialog" class="dialog hide"></div>
+
+  <div id="imgDialog"></div>
 </body>
 <script>
+var globalcanvas
 var selectObj = document.getElementById('content')
 var dialogObj = document.getElementById('dialog')
+var imgDialog = document.getElementById('imgDialog')
 select(selectObj, showTip);
 listenDocuentClick()
 /*
@@ -114,8 +119,8 @@ function showTip(txt,target,position){
  */
 function getCanvasFromHtml(){
   html2canvas(document.body).then(function(canvas) {
+    globalcanvas = canvas
     dialogObj.appendChild(canvas)
-    
   });
 }
 
@@ -145,6 +150,16 @@ function listenDocuentClick(){
   }
 }
 
+/**
+ * canvas转图片
+ */
+function convertCanvasToImage(canvas) {
+	var image = new Image();
+	image.src = globalcanvas.toDataURL("image/png");
+  console.log('image ====', image)
+  imgDialog.appendChild(image)
+	//return image;
+}
 
 /**
  *  设置style
@@ -160,5 +175,9 @@ function setStyle(css){
   var head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
 }
+
+
+
+
 </script>
 </html>
