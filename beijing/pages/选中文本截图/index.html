@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>测试文本选中 并在其位置弹出提示框</title>
+  <script src="./html2canvas.min.js"></script>
   <style>
     .select-widFeedback{
       line-height: 26px;
@@ -34,13 +35,21 @@
       display: inline-block;
       margin-left: 3px;
     }
+    .dialog{
+      width: 800px;
+      height: 300px;
+      top: 100px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      border: 4px solid #ccc;
+    }
     .hide{
       display: none;
     }
   </style>
 </head>
 <body>
-  <div>
+  <div id="content">
     在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
     从定义中我们提炼出几个关键字：组件、结构、关系；
     组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
@@ -49,13 +58,17 @@
     架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
   </div>
 
-  <div class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3; ">
+  <div id="tip" class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" onclick="setStyle(`.dialog{display: block;}`)">
     <div class="select-widFeedback-icon"></div>
     <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
-    </div>
+  </div>
+  <div id="dialog" class="dialog hide"></div>
 </body>
 <script>
-select(document, tanchu);
+var selectObj = document.getElementById('content')
+var dialogObj = document.getElementById('dialog')
+select(selectObj, showTip);
+listenDocuentClick()
 /*
 * 选中文字事件
 */
@@ -81,56 +94,68 @@ function select(o, fn){
       }
     }
   }
-}
-/**
- * 弹出框
- */
-function tanchu(txt,target,position){
-  console.log(txt, target, position)
-  var style = document.createElement("style");
-  style.type = "text/css";
-  try{
-  　　style.appendChild(document.createTextNode(`.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`));
-  }catch(ex){
-  　　style.styleSheet.cssText = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`;//针对IE
+  o.onmousedown = function(){ //1清空dialog内容 2隐藏dialog弹窗
+    dialogObj.innerHTML = ''
+    setStyle(`.dialog{display: none;}`)
   }
-  var head = document.getElementsByTagName("head")[0];
-  head.appendChild(style);
 }
-document.onclick=function(e){
-  var event = window.event || e;
-  var target = event.srcElement ? event.srcElement : event.target;
-  var style = document.createElement("style");
-  //console.log('event ===', event)
-  //var btnNum = event.button;
-  // if (btnNum==2){
-  //   console.log("您点击了鼠标右键！")
-  // } else if(btnNum==0){
-  //   console.log("您点击了鼠标左键！")
-  // }else if(btnNum==1){
-  //   console.log("您点击了鼠标中键！");
-  // }
 
-  var sText = ''
-  if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
-    //Firefox在文本框内选择文字
-    var staIndex=target.selectionStart;
-    var endIndex=target.selectionEnd;
-    if(staIndex!=endIndex){
-      sText=target.value.substring(staIndex,endIndex);
+/**
+ * 弹出框tip
+ */
+function showTip(txt,target,position){
+  getCanvasFromHtml()
+  var css = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`
+  setStyle(css)
+}
+
+/**
+ * html2canvas 生成页面截图
+ */
+function getCanvasFromHtml(){
+  html2canvas(document.body).then(function(canvas) {
+    dialogObj.appendChild(canvas)
+    
+  });
+}
+
+/**
+ * 监听页面点击 取消tip弹窗
+ */ 
+function listenDocuentClick(){
+  document.onclick=function(e){
+    var event = window.event || e;
+    var target = event.srcElement ? event.srcElement : event.target;
+    var sText = ''
+    if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
+      //Firefox在文本框内选择文字
+      var staIndex=target.selectionStart;
+      var endIndex=target.selectionEnd;
+      if(staIndex!=endIndex){
+        sText=target.value.substring(staIndex,endIndex);
+      }
+    } else {
+      //获取选中文字
+      sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
     }
-  } else {
-    //获取选中文字
-    sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
+    if (sText) {
+      return
+    }
+    setStyle(`.select-widFeedback{display: none;}`)
   }
-  if (sText) {
-    return
-  }
+}
+
+
+/**
+ *  设置style
+ */
+function setStyle(css){
+  var style = document.createElement("style");
   style.type = "text/css";
   try{
-  　　style.appendChild(document.createTextNode(`.select-widFeedback{display: none;}`));
+    　style.appendChild(document.createTextNode(css));
   }catch(ex){
-  　　style.styleSheet.cssText = `.select-widFeedback{display: none;}`;//针对IE
+  　　style.styleSheet.cssText = css;//针对IE
   }
   var head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
