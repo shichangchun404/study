@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>echarts</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.3.0/echarts.min.js"></script>
+</head>
+<body>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script>
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+// 绘制图表
+myChart.setOption({
+    title: {
+        text: 'ECharts 入门示例'
+    },
+    tooltip: {},
+    xAxis: {
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+    },
+    yAxis: {},
+    series: [{
+        name: '销量',
+        type: 'bar', //bar line pie 
+        data: [5, 20, 36, 10, 10, 20]
+    }],
+    // legend: {
+    //   data: [{
+    //     name: '系列1',
+    //     // 强制设置图形为圆。
+    //     icon: 'circle',
+    //     // 设置文本为红色
+    //     textStyle: {
+    //       color: 'red'
+    //     }
+    //   }]
+    // }
+});
+</script>
+</html>
