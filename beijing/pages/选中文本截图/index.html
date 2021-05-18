@@ -35,7 +35,19 @@
       display: inline-block;
       margin-left: 3px;
     }
+    .dialogbg{
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: .3;
+      display: none;
+    }
     .dialog{
+      z-index: 1111;
       position: fixed;
       width: 800px;
       height: 300px;
@@ -45,6 +57,10 @@
       overflow-x: scroll;
       overflow-y: scroll;
       border: 4px solid #ccc;
+    }
+    .textarea{
+      position: fixed;
+      z-index: 1112;
     }
     .hide{
       display: none;
@@ -59,86 +75,239 @@
   <button onclick="cancel()">撤回</button>
 
   <div id="content">
-    <p>
-      在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
-      从定义中我们提炼出几个关键字：组件、结构、关系；
-      组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
-      结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
-      关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
-      从定义中我们提炼出几个关键字：组件、结构、关系；
-      组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
-      结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
-      关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
-      从定义中我们提炼出几个关键字：组件、结构、关系；
-      组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
-      结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
-      关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
-    <p>
-      架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
-    </p>
+    <div>
+      <p>
+        在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+        从定义中我们提炼出几个关键字：组件、结构、关系；
+        组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+        结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+        关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+        从定义中我们提炼出几个关键字：组件、结构、关系；
+        组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+        结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+        关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+        从定义中我们提炼出几个关键字：组件、结构、关系；
+        组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+        结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+        关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <p>
+        架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+      </p>
+      <div>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+      </div>
+      <div>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          在了解架构本质之前先了解下架构的定义，百度百科对架构的定义：架构又名软件架构，是有关软件整体结构与组件的抽象描述，用于指导大型软件系统各个方面的设计 ；
+          从定义中我们提炼出几个关键字：组件、结构、关系；
+          组件：也可以称为软件元素或者是架构要素。可以是子系统、模块、应用服务，取决于不同粒度来看待。
+          结构：是架构之后的产出物，不同的软件系统会有不同结构，这些结构是为解决不同场景而设计。
+          关系：实现架构组件之间的连接。连接关系可以是JVM内部调用、可以是组件之间、也可以是跨应用的分布式调用、也可以与外系统接口集成调用。
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+        <p>
+          架构可以理解为是将软件组件按照一定结构进行连接起来 ；软件组件
+        </p>
+      </div>
+    </div>
+    
   </div>
 
-  <div id="tip" class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" onclick="setStyle(`.dialog{display: block;}`)">
+  <div id="tip" class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" onclick="showDialog()">
     <div class="select-widFeedback-icon"></div>
     <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
   </div>
+
+  <div id="dialogbg" class="dialogbg" onclick="closeDialog()"></div>
   <div id="dialog" class="dialog hide"></div>
-  
+  <textarea id="textarea" class="textarea hide"></textarea>
 
   <div id="imgBox"></div>
 </body>
@@ -148,20 +317,30 @@ var ctx
 var imgData = [] // 记录每一步操作内容
 var selectObj = document.getElementById('content')
 var canvasBox = document.getElementById('dialog')
+var dialogbg = document.getElementById('dialogbg')
 var imgBox = document.getElementById('imgBox')
+var textarea = document.getElementById('textarea')
+var textareaX = 0
+var textareaY = 0
+let windowScrollTop = 0
 var startPosition
 var endPosition
+var isShowTextarea = false
+var fillStyle = 'rgba(192, 80, 77, 0.5)';
+
 listenSelectContent()
 listenDocumentClick()
 listen4Rectangle()
+ListenWindowScroll()
+
 /*
 * 监听选择文旦内容
 */
 function listenSelectContent(){
   selectObj.onmouseup = function(e){
     var event = window.event || e;
-    var position = {'x':e.clientX+10,'y':e.clientY+14}
-    startPosition = {'x':e.clientX,'y':e.clientY}
+    var position = {'x': e.pageX,'y': e.pageY}
+    // startPosition = {'x':e.clientX,'y':e.clientY}
     var target = event.srcElement ? event.srcElement : event.target;
     if (/input|textarea/i.test(target.tagName) && /firefox/i.test(navigator.userAgent)) {
         //Firefox在文本框内选择文字
@@ -183,7 +362,7 @@ function listenSelectContent(){
   selectObj.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
     var endPosition = {'x':e.clientX,'y':e.clientY}
     canvasBox.innerHTML = ''
-    setStyle(`.dialog{display: none;}`)
+    closeDialog()
   }
 }
 
@@ -193,15 +372,18 @@ function listenSelectContent(){
  */ 
 function listen4Rectangle() {
   canvasBox.onmousedown  = function(e){
-    startPosition = {'x':e.clientX-570,'y':e.clientY-110}
+    console.log('listen4Rectangle onmousedown ', e)
+    startPosition = {'x': e.offsetX,'y': e.offsetY}
     console.log('startPosition ', startPosition)
   }
   canvasBox.onmouseup = function(e){
-    endPosition = {'x':e.clientX-550,'y':e.clientY-100}
-    console.log('endPosition ', endPosition)
+    endPosition = {'x': e.offsetX,'y': e.offsetY}
+    console.log('startPosition endPosition ', startPosition, endPosition)
     print(startPosition,endPosition)
   }
 }
+
+
 
 /**
  * 选择插入文字-监听画布鼠标事件
@@ -209,18 +391,41 @@ function listen4Rectangle() {
  function listen4Text(){
   canvasBox.onmousedown  = function(e){}
   canvasBox.onmouseup = function(e){
-    fillText('你好', e.clientX, e.clientY)
+    if (isShowTextarea) {
+      var text = textarea.value
+      fillText(text, textareaX, textareaY)
+      setStyle('.textarea{display: none;}')
+      textarea.value = ''
+      isShowTextarea = false
+    } else {
+      console.log(e)
+      console.log('e.clientX, e.clientY ', e.clientX, e.clientY)
+      textareaX = e.offsetX
+      textareaY = e.offsetY
+      showTextarea(e.clientX,e.clientY)
+    }
   }
 }
+
+/**
+ * 展示文字输入框
+ */
+ function showTextarea(x,y) {
+  isShowTextarea = true
+  var css = `.textarea{left: ${x}px; top: ${y}px;display: block;}`
+  setStyle(css)
+} 
 
 /**
  * 弹出框tip
  */
 function showTip(txt,target,position){
+  console.log('showTip position', position)
   getCanvasFromHtml()
   var css = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`
   setStyle(css)
 }
+
 
 /**
  * html2canvas 生成页面截图
@@ -292,9 +497,10 @@ function setStyle(css){
  * 绘制矩形区域
  */
 function print(s,e){
-  ctx.fillStyle = 'rgba(192, 80, 77, 0.5)';;
-  ctx.fillRect(s.x,s.y,e.x-s.x,e.y-s.y);
-  //ctx.fillRect(10,10,e.x,e.y);
+  console.log('print(s,e) ', s,e)
+  ctx.fillStyle = fillStyle;
+  ctx.fillRect(s.x, s.y-windowScrollTop, e.x-s.x, e.y-s.y);
+  // ctx.fillRect(1, 1, 72, 79);
   canvas_copy()
 }
 
@@ -302,9 +508,10 @@ function print(s,e){
  * 绘制文字
  */ 
 function fillText(text,x,y){
+  console.log('fillText ', text,x,y)
   ctx.font = 'bold 16px arial';
   ctx.fillStyle = 'red'
-  ctx.fillText(text, x, y);
+  ctx.fillText(text, x, y-windowScrollTop);
   canvas_copy()
 }
 
@@ -331,8 +538,32 @@ function cancel(){
   }
 }
 
+function ListenWindowScroll() {
+  window.addEventListener("scroll", windowScroll);//监听页面滚动
+  function windowScroll(e) {
+    console.log('windowScroll', e)
+    windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    //console.log('windowScrollTop ', windowScrollTop)
+  }    
+}
 
+/**
+ * 展示蒙层 并禁止body滚动 否则canvas绘制定位有问题
+ */ 
+function showDialog () {
+  setStyle(`.dialog{display: block;}`)
+  setStyle(`.dialogbg{display: block;}`)
+  document.body.style.overflow='hidden'
+}
 
+/**
+ * 取消蒙层 放开body滚动
+ */ 
+function closeDialog () {
+  setStyle(`.dialog{display: none;}`)
+  setStyle(`.dialogbg{display: none;}`)
+  document.body.style.overflow='auto'
+}
 
 </script>
 </html>
