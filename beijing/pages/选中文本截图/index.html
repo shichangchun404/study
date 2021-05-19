@@ -7,6 +7,10 @@
   <title>测试文本选中 并在其位置弹出提示框</title>
   <script src="./html2canvas.min.js"></script>
   <style>
+    .botton-box {
+      position: fixed;
+      z-index: 9999;
+    }
     .select-widFeedback{
       line-height: 26px;
       height: 28px;
@@ -62,17 +66,30 @@
       position: fixed;
       z-index: 1112;
     }
+    .hoverRectangle{
+      border: solid blue 1px;
+      background-color: rgba(192, 80, 77, 0.5) ;
+      position: fixed;
+      z-index: 1113;
+      width: 100px;
+      height: 50px;
+      top: 100px;
+      left: 400px;
+    }
     .hide{
       display: none;
     }
   </style>
 </head>
 <body>
-  <button onclick="print()">生成截图</button>
-  <button onclick="convertCanvasToImage()">canvas转成图片</button>
-  <button onclick="listen4Rectangle()">矩形工具</button>
-  <button onclick="listen4Text()">写入文字</button>
-  <button onclick="cancel()">撤回</button>
+  <div class="botton-box">
+    <button onclick="printRect()">生成截图</button>
+    <button onclick="convertCanvasToImage()">canvas转成图片</button>
+    <button onclick="listen4Rectangle()">矩形工具</button>
+    <button onclick="listen4Text()">写入文字</button>
+    <button onclick="cancel()">撤回</button>
+  </div>
+
 
   <div id="content">
     <div>
@@ -308,7 +325,7 @@
   <div id="dialogbg" class="dialogbg" onclick="closeDialog()"></div>
   <div id="dialog" class="dialog hide"></div>
   <textarea id="textarea" class="textarea hide"></textarea>
-
+  <div id="hoverRectangle" class="hoverRectangle hide"></div>
   <div id="imgBox"></div>
 </body>
 <script>
@@ -320,13 +337,18 @@ var canvasBox = document.getElementById('dialog')
 var dialogbg = document.getElementById('dialogbg')
 var imgBox = document.getElementById('imgBox')
 var textarea = document.getElementById('textarea')
+var hoverRectangle = document.getElementById('hoverRectangle')
 var textareaX = 0
 var textareaY = 0
 let windowScrollTop = 0
 var startPosition
 var endPosition
+var startClientPoint = {x:0,y:0}
+var endClientPoint = {x:0,y:0}
 var isShowTextarea = false
+var isMouseDown = false // 鼠标在canvas上长安
 var fillStyle = 'rgba(192, 80, 77, 0.5)';
+
 
 listenSelectContent()
 listenDocumentClick()
@@ -372,15 +394,33 @@ function listenSelectContent(){
  */ 
 function listen4Rectangle() {
   canvasBox.onmousedown  = function(e){
-    console.log('listen4Rectangle onmousedown ', e)
+    isMouseDown = true
     startPosition = {'x': e.offsetX,'y': e.offsetY}
-    console.log('startPosition ', startPosition)
+    startClientPoint = {'x': e.clientX,'y': e.clientY}
   }
-  canvasBox.onmouseup = function(e){
-    endPosition = {'x': e.offsetX,'y': e.offsetY}
-    console.log('startPosition endPosition ', startPosition, endPosition)
-    print(startPosition,endPosition)
+  // canvasBox.onmouseup = function(e){
+  //   isMouseDown = false
+  //   hideHoverRectangle()
+  //   endPosition = {'x': e.offsetX,'y': e.offsetY}
+  //   endClientPoint = {'x': e.clientX,'y': e.clientY}
+  //   printRect(startPosition,endPosition)
+  // }
+  canvasBox.onmousemove = function(e) {
+    if (isMouseDown) {
+      endPosition = {'x': e.offsetX,'y': e.offsetY}
+      endClientPoint = {'x': e.clientX,'y': e.clientY}
+      printHoverRectangle(startClientPoint,endClientPoint)
+    }
   }
+}
+
+/**
+ * 点击动态矩形 隐藏本身
+ */ 
+hoverRectangle.onclick = function(){
+  hideHoverRectangle()
+  isMouseDown = false
+  printRect(startPosition,endPosition)
 }
 
 
@@ -388,7 +428,7 @@ function listen4Rectangle() {
 /**
  * 选择插入文字-监听画布鼠标事件
  */
- function listen4Text(){
+function listen4Text(){
   canvasBox.onmousedown  = function(e){}
   canvasBox.onmouseup = function(e){
     if (isShowTextarea) {
@@ -405,6 +445,7 @@ function listen4Rectangle() {
       showTextarea(e.clientX,e.clientY)
     }
   }
+  canvasBox.onmousemove = function(e) {}
 }
 
 /**
@@ -496,19 +537,33 @@ function setStyle(css){
 /**
  * 绘制矩形区域
  */
-function print(s,e){
-  console.log('print(s,e) ', s,e)
+function printRect(start,end){
   ctx.fillStyle = fillStyle;
-  ctx.fillRect(s.x, s.y-windowScrollTop, e.x-s.x, e.y-s.y);
-  // ctx.fillRect(1, 1, 72, 79);
+  ctx.fillRect(start.x, start.y-windowScrollTop, end.x-start.x, end.y-start.y);
   canvas_copy()
 }
+
+/**
+ * 动态矩形
+ */ 
+function printHoverRectangle(start,end){ 
+  console.log('start,end ', start,end)
+  var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
+  
+  setStyle(style)
+  
+}
+function hideHoverRectangle(){
+  var style = `.hoverRectangle{display: none;left: 0px;top: 0px;width: 0px;height:0px;}`
+  setStyle(style)
+}
+
 
 /**
  * 绘制文字
  */ 
 function fillText(text,x,y){
-  console.log('fillText ', text,x,y)
+  //console.log('fillText ', text,x,y)
   ctx.font = 'bold 16px arial';
   ctx.fillStyle = 'red'
   ctx.fillText(text, x, y-windowScrollTop);
@@ -541,7 +596,7 @@ function cancel(){
 function ListenWindowScroll() {
   window.addEventListener("scroll", windowScroll);//监听页面滚动
   function windowScroll(e) {
-    console.log('windowScroll', e)
+    // console.log('windowScroll', e)
     windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
     //console.log('windowScrollTop ', windowScrollTop)
   }    
