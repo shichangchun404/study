@@ -7,9 +7,14 @@
   <title>测试文本选中 并在其位置弹出提示框</title>
   <script src="./html2canvas.min.js"></script>
   <style>
+    .canvas-edit-box{
+      display: none;
+    }
     .botton-box {
       position: fixed;
       z-index: 9999;
+      top: 420px;
+      left: 1000px;
     }
     .select-widFeedback{
       line-height: 26px;
@@ -48,7 +53,6 @@
       height: 100%;
       background: #000;
       opacity: .3;
-      display: none;
     }
     .dialog{
       z-index: 1111;
@@ -82,15 +86,6 @@
   </style>
 </head>
 <body>
-  <div class="botton-box">
-    <button onclick="printRect()">生成截图</button>
-    <button onclick="convertCanvasToImage()">canvas转成图片</button>
-    <button onclick="listen4Rectangle()">矩形工具</button>
-    <button onclick="listen4Text()">写入文字</button>
-    <button onclick="cancel()">撤回</button>
-  </div>
-
-
   <div id="content">
     <div>
       <p>
@@ -317,16 +312,27 @@
     
   </div>
 
-  <div id="tip" class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" onclick="showDialog()">
-    <div class="select-widFeedback-icon"></div>
-    <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
-  </div>
+  <div>
+    <div class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" onclick="showDialog()">
+      <div class="select-widFeedback-icon"></div>
+      <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
+    </div>
+    <div class="canvas-edit-box">
+      <div class="dialogbg"></div>
+      <div id="dialog" class="dialog"></div>
+      <div class="botton-box">
+        <button onclick="closeDialog()">取消</button>
+        <button onclick="listen4Rectangle()">矩形工具</button>
+        <button onclick="listen4Text()">写入文字</button>
+        <button onclick="cancel()">撤回</button>
+        <button onclick="convertCanvasToImage()">保存提交</button>
+      </div>
 
-  <div id="dialogbg" class="dialogbg" onclick="closeDialog()"></div>
-  <div id="dialog" class="dialog hide"></div>
-  <textarea id="textarea" class="textarea hide"></textarea>
-  <div id="hoverRectangle" class="hoverRectangle hide"></div>
-  <div id="imgBox"></div>
+      <textarea id="textarea" class="textarea hide"></textarea>
+      <div id="hoverRectangle" class="hoverRectangle hide"></div>
+    </div>
+    <div id="imgBox"></div>
+  </div>
 </body>
 <script>
 var globalcanvas
@@ -334,7 +340,7 @@ var ctx
 var imgData = [] // 记录每一步操作内容
 var selectObj = document.getElementById('content')
 var canvasBox = document.getElementById('dialog')
-var dialogbg = document.getElementById('dialogbg')
+// var dialogbg = document.getElementById('dialogbg')
 var imgBox = document.getElementById('imgBox')
 var textarea = document.getElementById('textarea')
 var hoverRectangle = document.getElementById('hoverRectangle')
@@ -398,7 +404,7 @@ function listen4Rectangle() {
     startPosition = {'x': e.offsetX,'y': e.offsetY}
     startClientPoint = {'x': e.clientX,'y': e.clientY}
   }
-  // canvasBox.onmouseup = function(e){
+  // canvasBox.onmouseup = function(e){ // 重绘dom时 该时间失效
   //   isMouseDown = false
   //   hideHoverRectangle()
   //   endPosition = {'x': e.offsetX,'y': e.offsetY}
@@ -423,8 +429,6 @@ hoverRectangle.onclick = function(){
   printRect(startPosition,endPosition)
 }
 
-
-
 /**
  * 选择插入文字-监听画布鼠标事件
  */
@@ -446,6 +450,8 @@ function listen4Text(){
     }
   }
   canvasBox.onmousemove = function(e) {}
+  textarea.focus()
+  textarea.select()
 }
 
 /**
@@ -514,7 +520,6 @@ function convertCanvasToImage(canvas) {
 	image.src = globalcanvas.toDataURL("image/png");
   console.log('image ====', image)
   imgBox.appendChild(image)
-	//return image;
 }
 
 /**
@@ -526,7 +531,7 @@ function setStyle(css){
   try{
     　style.appendChild(document.createTextNode(css));
   }catch(ex){
-  　　style.styleSheet.cssText = css;//针对IE
+  　　style.styleSheet.cssText = css; //针对IE
   }
   var head = document.getElementsByTagName("head")[0];
   head.appendChild(style);
@@ -549,9 +554,7 @@ function printRect(start,end){
 function printHoverRectangle(start,end){ 
   console.log('start,end ', start,end)
   var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
-  
   setStyle(style)
-  
 }
 function hideHoverRectangle(){
   var style = `.hoverRectangle{display: none;left: 0px;top: 0px;width: 0px;height:0px;}`
@@ -563,7 +566,6 @@ function hideHoverRectangle(){
  * 绘制文字
  */ 
 function fillText(text,x,y){
-  //console.log('fillText ', text,x,y)
   ctx.font = 'bold 16px arial';
   ctx.fillStyle = 'red'
   ctx.fillText(text, x, y-windowScrollTop);
@@ -576,7 +578,6 @@ function fillText(text,x,y){
 function canvas_copy(){
   var width = ctx.canvas.width;
   var height = ctx.canvas.height;
-  console.log('width, height ', width, height)
   imgData.push(ctx.getImageData(0, 0, width, height))
 }
 
@@ -596,18 +597,15 @@ function cancel(){
 function ListenWindowScroll() {
   window.addEventListener("scroll", windowScroll);//监听页面滚动
   function windowScroll(e) {
-    // console.log('windowScroll', e)
     windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-    //console.log('windowScrollTop ', windowScrollTop)
   }    
 }
 
 /**
  * 展示蒙层 并禁止body滚动 否则canvas绘制定位有问题
  */ 
-function showDialog () {
-  setStyle(`.dialog{display: block;}`)
-  setStyle(`.dialogbg{display: block;}`)
+function showDialog() {
+  setStyle(`.canvas-edit-box{display: block;}`)
   document.body.style.overflow='hidden'
 }
 
@@ -615,8 +613,7 @@ function showDialog () {
  * 取消蒙层 放开body滚动
  */ 
 function closeDialog () {
-  setStyle(`.dialog{display: none;}`)
-  setStyle(`.dialogbg{display: none;}`)
+  setStyle(`.canvas-edit-box{display: none;}`)
   document.body.style.overflow='auto'
 }
 
