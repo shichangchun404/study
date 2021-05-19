@@ -340,7 +340,6 @@ var ctx
 var imgData = [] // 记录每一步操作内容
 var selectObj = document.getElementById('content')
 var canvasBox = document.getElementById('dialog')
-// var dialogbg = document.getElementById('dialogbg')
 var imgBox = document.getElementById('imgBox')
 var textarea = document.getElementById('textarea')
 var hoverRectangle = document.getElementById('hoverRectangle')
@@ -359,8 +358,8 @@ var fillStyle = 'rgba(192, 80, 77, 0.5)';
 listenSelectContent()
 listenDocumentClick()
 listen4Rectangle()
-ListenWindowScroll()
-
+listenWindowScroll()
+listenHoverRectangle()
 /*
 * 监听选择文旦内容
 */
@@ -423,11 +422,14 @@ function listen4Rectangle() {
 /**
  * 点击动态矩形 隐藏本身
  */ 
-hoverRectangle.onclick = function(){
-  hideHoverRectangle()
-  isMouseDown = false
-  printRect(startPosition,endPosition)
+function listenHoverRectangle () {
+  hoverRectangle.onclick = function(){
+    hideHoverRectangle()
+    isMouseDown = false
+    printRect(startPosition,endPosition)
+  }
 }
+
 
 /**
  * 选择插入文字-监听画布鼠标事件
@@ -450,8 +452,16 @@ function listen4Text(){
     }
   }
   canvasBox.onmousemove = function(e) {}
-  textarea.focus()
-  textarea.select()
+}
+
+/**
+ * 监听页面滚动
+ */
+function listenWindowScroll() {
+  window.addEventListener("scroll", windowScroll);
+  function windowScroll(e) {
+    windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+  }    
 }
 
 /**
@@ -556,6 +566,10 @@ function printHoverRectangle(start,end){
   var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
   setStyle(style)
 }
+
+/**
+ * 隐藏动态矩形
+ */ 
 function hideHoverRectangle(){
   var style = `.hoverRectangle{display: none;left: 0px;top: 0px;width: 0px;height:0px;}`
   setStyle(style)
@@ -592,13 +606,6 @@ function cancel(){
   } else {
     console.log('已经是第一步了')
   }
-}
-
-function ListenWindowScroll() {
-  window.addEventListener("scroll", windowScroll);//监听页面滚动
-  function windowScroll(e) {
-    windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-  }    
 }
 
 /**
