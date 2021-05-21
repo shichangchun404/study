@@ -301,10 +301,27 @@ function showTip(txt,target,position){
  * html2canvas 生成页面截图
  */
 function getCanvasFromHtml(){
-  html2canvas(document.body, {allowTaint:true}).then(function(canvas) {
+  // html2canvas(document.body, {allowTaint:true}).then(function(canvas) {
+  //   globalcanvas = canvas
+  //   canvasBox.appendChild(canvas)
+  //   ctx = globalcanvas.getContext("2d");
+  //   canvas_copy()
+  // });
+
+  html2canvas(document.body, ).then(function(canvas) {
     globalcanvas = canvas
     canvasBox.appendChild(canvas)
     ctx = globalcanvas.getContext("2d");
+    ctx.clearRect(0, 0, 300, 300);
+
+    img = new Image(),//创建新的图片对象
+    img.src = 'https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2144684161/p85840.png';
+    img.setAttribute("crossOrigin",'Anonymous')
+    img.onload = function(){//图片加载完，再draw 和 toDataURL
+       ctx.drawImage(img,0,0);    
+       base64 = canvas.toDataURL("image/png"); 
+   };
+
     canvas_copy()
   });
 }
@@ -376,8 +393,20 @@ function printRect(start,end){
  * 动态矩形
  */ 
 function printHoverRectangle(start,end){ 
-  console.log('start,end ', start,end)
-  var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
+  var style = ''
+  if (start.x<end.x) {
+    if (start.y<end.y) {
+      style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+    } else {
+      style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+    } 
+  } else {
+    if (start.y<end.y) {
+      style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+    } else {
+      style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+    }
+  }
   setStyle(style)
 }
 
